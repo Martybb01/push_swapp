@@ -1,0 +1,97 @@
+NAME = libft.a
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+AR = ar
+ARFLAGS = -rcs
+RM = rm -f
+PATH_SRCS = libft/
+PATH_GNL = get_next_line/
+PATH_PRINTF = ft_printf/
+
+SRCS = ft_atoi.c \
+	ft_bzero.c \
+	ft_calloc.c \
+	ft_isalnum.c \
+	ft_isalpha.c \
+	ft_isascii.c \
+	ft_isdigit.c \
+	ft_isprint.c \
+	ft_itoa.c \
+	ft_memchr.c \
+	ft_memcmp.c \
+	ft_memcpy.c \
+	ft_memmove.c \
+	ft_memset.c \
+	ft_putchar_fd.c \
+	ft_putendl_fd.c \
+	ft_putnbr_fd.c \
+	ft_putstr_fd.c \
+	ft_split.c \
+	ft_strchr.c \
+	ft_strdup.c \
+	ft_striteri.c\
+	ft_strjoin.c \
+	ft_strlcat.c \
+	ft_strlcpy.c \
+	ft_strlen.c \
+	ft_strmapi.c \
+	ft_strncmp.c \
+	ft_strnstr.c \
+	ft_strrchr.c \
+	ft_strtrim.c \
+	ft_substr.c \
+	ft_tolower.c \
+	ft_toupper.c
+
+SRCS := $(addprefix $(PATH_SRCS), $(SRCS))
+
+BONUS_SRCS = ft_lstadd_back.c \
+	ft_lstadd_front.c \
+	ft_lstdelone.c \
+	ft_lstlast.c \
+	ft_lstmap.c \
+	ft_lstclear.c \
+	ft_lstiter.c \
+	ft_lstnew.c \
+	ft_lstsize.c
+
+BONUS_SRCS := $(addprefix $(PATH_SRCS), $(BONUS_SRCS))
+
+GNL = get_next_line_bonus.c
+
+GNL := $(addprefix $(PATH_GNL), $(GNL))
+
+PRINTF = printf_utils.c \
+		ft_printf.c \
+		printf_utils2.c
+
+PRINTF := $(addprefix $(PATH_PRINTF), $(PRINTF))
+
+OBJS := $(SRCS:.c=.o)
+BONUS_OBJS := $(BONUS_SRCS:.c=.o)
+OBJS_PRINTF := $(PRINTF:.c=.o)
+OBJS_GNL := $(GNL:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJS) $(OBJS_PRINTF) $(OBJS_GNL)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(OBJS_PRINTF) $(OBJS_GNL)
+
+bonus: $(BONUS_OBJS)
+	$(AR) $(ARFLAGS) $(NAME) $(BONUS_OBJS)
+
+clean:
+	$(RM) $(OBJS) $(BONUS_OBJS) $(OBJS_PRINTF) $(OBJS_GNL)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+.PHONY: clean fclean re all bonus
+
+
+
+
+
+
