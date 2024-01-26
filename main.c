@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:06:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/01/26 17:30:32 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:56:43 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,33 @@
 int main(int ac, char **av)
 {
 	t_stack *stack_a;
+	t_stack *temp;	
+	//t_stack *stack_b;
 
 	stack_a = checker_input(ac, av);
-
+	temp = stack_a;
+	//stack_b = NULL;
 	if (stack_a == NULL || stack_a->next == NULL)
 		ft_error();
-	// ft_stack_init(&stack_a, av + 1);
+
 	while (stack_a)
 	{
 		ft_printf("stack_a = %d\n", stack_a->value);
-		if (check_if_sorted(stack_a) == 1)
-			ft_printf("sorted\n");
 		stack_a = stack_a->next;
 	}
+	if (check_if_sorted(temp) == 1)
+		ft_printf("sorted\n");
+	else
+		ft_printf("not sorted\n");
+	
+	nodes_swap(temp, temp->next, "sa");
 
-	// if (check_if_sorted(stack_a) == 1)
-	// 	ft_printf("OK\n");
-	//  check_if_sorted(stack_a);
-	// ft_printf("OK\n");
-	//  ft_printf("ciao\n");
+	while (temp)
+	{
+		ft_printf("stack_a = %d\n", temp->value);
+		temp = temp->next;
+	}
+	
+
 	return (0);
 }

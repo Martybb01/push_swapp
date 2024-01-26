@@ -16,7 +16,6 @@ void nodes_swap(t_stack *stack_a, t_stack *stack_b, char *str)
 {
 	int tmp;
 
-	ft_printf("ciao");
 	tmp = stack_a->value;
 	stack_a->value = stack_b->value;
 	stack_b->value = tmp;
@@ -24,7 +23,6 @@ void nodes_swap(t_stack *stack_a, t_stack *stack_b, char *str)
 	{
 		ft_printf("%s\n", str);
 	}
-	ft_printf("%s\n", str);
 }
 
 void nodes_double_swap(t_stack *stack_a, t_stack *stack_b)
