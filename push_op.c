@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   push_op.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 17:29:53 by marboccu          #+#    #+#             */
-/*   Updated: 2024/01/26 17:30:01 by marboccu         ###   ########.fr       */
+/*   Created: 2024/01/28 22:17:04 by marboccu          #+#    #+#             */
+/*   Updated: 2024/01/28 22:25:28 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void nodes_swap(t_stack *stack_a, t_stack *stack_b, char *str)
+void node_push(t_stack **stack_src, t_stack **stack_dst, char *str)
 {
-	int tmp;
+	t_stack *temp;
+	t_stack *temp2;
 
-	tmp = stack_a->value;
-	stack_a->value = stack_b->value;
-	stack_b->value = tmp;
+	if (!*stack_src || !stack_dst)
+		return;
+
+	temp = *stack_src;
+	temp2 = *stack_dst;
+
+	*stack_src = temp->next;
+	*stack_dst = temp2->next;
+
+	temp->next = *stack_dst;
+	temp2->next = *stack_src;
+
+	*stack_dst = temp;
+	*stack_src = temp2;
+
 	if (str)
 	{
 		ft_printf("%s\n", str);
 	}
-}
-
-void nodes_double_swap(t_stack *stack_a, t_stack *stack_b)
-{
-	nodes_swap(stack_a, stack_a->next, "");
-	nodes_swap(stack_b, stack_b->next, "");
 }

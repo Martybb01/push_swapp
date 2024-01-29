@@ -6,72 +6,60 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:06:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/01/26 17:56:43 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/01/28 22:25:48 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// t_stack *ft_new_node(int data)
-// {
-// 	t_stack *node;
-
-// 	node = malloc(sizeof(t_stack));
-// 	if (!node)
-// 		return (NULL);
-// 	node->value = data;
-// 	node->next = NULL;
-// 	return (node);
-// }
-
-// t_stack *ft_new_stack(char **values)
-// {
-// 	t_stack *stack;
-// 	t_stack *temp;
-// 	int i;
-
-// 	stack = ft_new_node(ft_atoi(*values));
-// 	temp = stack;
-// 	i = 1;
-// 	while (values[i])
-// 	{
-// 		temp->next = ft_new_node(ft_atoi(values[i]));
-// 		temp = temp->next;
-// 		i++;
-// 	}
-// 	return (stack);
-// }
-
 int main(int ac, char **av)
 {
 	t_stack *stack_a;
-	t_stack *temp;	
-	//t_stack *stack_b;
+	t_stack *temp_a;
+	t_stack *stack_b;
+	t_stack *temp_b;
 
 	stack_a = checker_input(ac, av);
-	temp = stack_a;
-	//stack_b = NULL;
-	if (stack_a == NULL || stack_a->next == NULL)
-		ft_error();
+	temp_a = stack_a;
 
-	while (stack_a)
-	{
-		ft_printf("stack_a = %d\n", stack_a->value);
-		stack_a = stack_a->next;
-	}
-	if (check_if_sorted(temp) == 1)
+	stack_b = NULL;
+	ft_add_new_node(&stack_b, 1);
+	ft_add_new_node(&stack_b, 2);
+	temp_b = stack_b;
+
+	print_stack(temp_b, "stack_b");
+
+	if (check_if_sorted(temp_b) == 1)
 		ft_printf("sorted\n");
 	else
 		ft_printf("not sorted\n");
-	
-	nodes_swap(temp, temp->next, "sa");
 
-	while (temp)
-	{
-		ft_printf("stack_a = %d\n", temp->value);
-		temp = temp->next;
-	}
-	
+	if (stack_a == NULL || stack_a->next == NULL)
+		ft_error();
+
+	print_stack(temp_a, "stack_a");
+
+	if (check_if_sorted(temp_a) == 1)
+		ft_printf("sorted\n");
+	else
+		ft_printf("not sorted\n");
+
+	// nodes_swap(temp_a, "sa");
+	//  nodes_swap(temp_b, "sb");
+	//  nodes_double_swap(temp_a, temp_b);
+	//  nodes_rotate(&temp_a, "ra");
+	//  nodes_rotate(&temp_b, "rb");
+	// nodes_double_rotate(&temp_a, &temp_b);
+
+	// nodes_reverse_rotate(&temp_a, "rra");
+	// nodes_reverse_rotate(&temp_b, "rrb");
+	// nodes_double_reverse_rotate(&temp_a, &temp_b);
+
+	// node_push(&temp_a, &temp_b, "pb");
+
+	print_stack(temp_a, "stack_a");
+
+	print_stack(temp_b, "stack_b");
 
 	return (0);
 }

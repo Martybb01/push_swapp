@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/01/23 23:04:07 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/01/28 12:44:17 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,24 @@ void ft_add_new_node(t_stack **stack, int num)
 		last_node->next = new_node;
 		new_node->prev = last_node;
 	}
+}
+
+void print_stack(t_stack *stack, char *str)
+{
+	if (str)
+		ft_printf("%s:\n", str);
+	while (stack)
+	{
+		ft_printf("%d\n", stack->value);
+		stack = stack->next;
+	}
+}
+
+t_stack *ft_stacklast(t_stack *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
