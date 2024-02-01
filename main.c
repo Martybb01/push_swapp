@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:06:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/01/28 22:25:48 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:33:51 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,18 @@ int main(int ac, char **av)
 	// nodes_double_rotate(&temp_a, &temp_b);
 
 	// nodes_reverse_rotate(&temp_a, "rra");
-	// nodes_reverse_rotate(&temp_b, "rrb");
-	// nodes_double_reverse_rotate(&temp_a, &temp_b);
+	//  nodes_reverse_rotate(&temp_b, "rrb");
+	//  nodes_double_reverse_rotate(&temp_a, &temp_b);
 
 	// node_push(&temp_a, &temp_b, "pb");
+
+	if (check_if_sorted(temp_a))
+		ft_printf("sorted\n");
+	else
+	{
+		ft_printf("not sorted\n");
+		sort_under_three(&temp_a, ft_stack_size(temp_a));
+	}
 
 	print_stack(temp_a, "stack_a");
 

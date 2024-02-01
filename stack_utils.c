@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/01/28 12:44:17 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:32:26 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,19 @@ void print_stack(t_stack *stack, char *str)
 		ft_printf("%d\n", stack->value);
 		stack = stack->next;
 	}
+}
+
+int ft_stack_size(t_stack *stack)
+{
+	int i;
+
+	i = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (i);
 }
 
 t_stack *ft_stacklast(t_stack *lst)
