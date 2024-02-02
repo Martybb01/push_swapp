@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:24 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/01 16:30:07 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:07:20 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void sort_three(t_stack **stack_a)
 		else
 			nodes_rotate(stack_a, "ra");
 	}
-	else if ((*stack_a)->value < (*stack_a)->next->value && (*stack_a)->value > (*stack_a)->next->next->value && (*stack_a)->next->value > (*stack_a)->next->next->value)
+	else if ((*stack_a)->value < (*stack_a)->next->value && (*stack_a)->value > (*stack_a)->next->next->value)
 	{
 		nodes_reverse_rotate(stack_a, "rra");
 	}

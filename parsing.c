@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/01/26 17:28:04 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:16:46 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ t_stack *checker_input(int ac, char **av)
 
 	i = 1;
 	stack_a = NULL;
-	if (ac == 1 || (ac == 2 && !av[1][0]))
+	if ((ac == 2 && !av[1][0]) || ac == 1)
 		ft_error();
-	else if (ac == 2)
+	else if (ac == 2 && av[1][1] != '\0')
 		stack_a = checker_string(av);
 	else if (ac > 2)
 	{

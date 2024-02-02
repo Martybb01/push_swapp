@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:06:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/01 16:33:51 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/01 23:22:26 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int main(int ac, char **av)
 	else
 		ft_printf("not sorted\n");
 
-	if (stack_a == NULL || stack_a->next == NULL)
-		ft_error();
+	// if (stack_a == NULL)
+	// 	ft_error();
 
 	print_stack(temp_a, "stack_a");
 
@@ -58,10 +58,9 @@ int main(int ac, char **av)
 	// node_push(&temp_a, &temp_b, "pb");
 
 	if (check_if_sorted(temp_a))
-		ft_printf("sorted\n");
+		return (0);
 	else
 	{
-		ft_printf("not sorted\n");
 		sort_under_three(&temp_a, ft_stack_size(temp_a));
 	}
 
