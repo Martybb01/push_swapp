@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:06:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/01 23:22:26 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/04 11:57:20 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int ac, char **av)
 	temp_a = stack_a;
 
 	stack_b = NULL;
-	ft_add_new_node(&stack_b, 1);
+	ft_add_new_node(&stack_b, 3);
 	ft_add_new_node(&stack_b, 2);
 	temp_b = stack_b;
 
@@ -61,7 +61,9 @@ int main(int ac, char **av)
 		return (0);
 	else
 	{
-		sort_under_three(&temp_a, ft_stack_size(temp_a));
+		// sort_under_three(&temp_a, ft_stack_size(temp_a));
+		// sort_under_three(&temp_b, ft_stack_size(temp_b));
+		sort_five(&temp_a, &temp_b);
 	}
 
 	print_stack(temp_a, "stack_a");

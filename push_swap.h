@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/01 16:32:47 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/04 11:56:12 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,8 @@ void node_push(t_stack **stack_src, t_stack **stack_dst, char *str);
 
 void sort_three(t_stack **stack_a);
 void sort_under_three(t_stack **stack_a, int len);
+void sort_five(t_stack **stack_a, t_stack **stack_b);
+
+void init_stack_b(t_stack **stack_a, t_stack **stack_b);
 
 #endif

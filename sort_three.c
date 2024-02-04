@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:24 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/01 23:07:20 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/04 11:57:35 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,22 @@ void sort_three(t_stack **stack_a)
 		nodes_rotate(stack_a, "ra");
 	}
 }
+
+// algo to sort 5 numbers
+void sort_five(t_stack **stack_a, t_stack **stack_b)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = ft_stack_size(*stack_a);
+	while (i < len - 3)
+	{
+		node_push(stack_a, stack_b, "pb");
+		i++;
+	}
+}
+
 void sort_under_three(t_stack **stack_a, int len)
 {
 	if (len == 1)
