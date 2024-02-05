@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 22:17:04 by marboccu          #+#    #+#             */
-/*   Updated: 2024/01/28 22:25:28 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/04 21:35:21 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,15 @@
 void node_push(t_stack **stack_src, t_stack **stack_dst, char *str)
 {
 	t_stack *temp;
-	t_stack *temp2;
 
-	if (!*stack_src || !stack_dst)
+	if (!*stack_src)
 		return;
 
-	temp = *stack_src;
-	temp2 = *stack_dst;
+	temp = (*stack_src)->next;
 
-	*stack_src = temp->next;
-	*stack_dst = temp2->next;
-
-	temp->next = *stack_dst;
-	temp2->next = *stack_src;
-
-	*stack_dst = temp;
-	*stack_src = temp2;
+	(*stack_src)->next = *stack_dst;
+	*stack_dst = *stack_src;
+	*stack_src = temp;
 
 	if (str)
 	{
