@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:24 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/04 21:41:40 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:34:49 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,49 @@ void sort_three(t_stack **stack_a)
 	}
 }
 
+// calculate distance of every number from top position in stack b
+void calculate_distance(t_stack **stack_b, int len)
+{
+	t_stack *temp;
+	int i;
+	int value;
+
+	i = 0;
+	temp = *stack_b;
+	while (i < len)
+	{
+		temp->curr_pos = i;
+		value = temp->value;
+		if (temp->curr_pos <= len / 2)
+			value = temp->curr_pos;
+		else
+			value = temp->curr_pos - len;
+		ft_printf("L'elemento %d ha valore %d e distanza %d\n", i + 1, temp->value, value);
+		temp = temp->next;
+		i++;
+	}
+}
+
 // algo to sort 5 numbers
 void sort_five(t_stack **stack_a, t_stack **stack_b)
 {
 	int i;
 	int len;
+	int *temp;
 
 	i = 0;
 	len = ft_stack_size(*stack_a);
+	temp = malloc(sizeof(int) * ft_stack_size(*stack_b));
 	while (i < len - 3)
 	{
 		node_push(stack_a, stack_b, "pb");
 		i++;
 	}
 	sort_three(stack_a);
-
-	while (i > 0)
-	{
-		node_push(stack_b, stack_a, "pa");
-		i--;
-	}
+	calculate_distance(stack_b, ft_stack_size(*stack_b));
 }
 
-void sort_under_three(t_stack **stack_a, t_stack **stack_b, int len)
+void sort_under_five(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	if (len == 1)
 		return;
