@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:24 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/06 17:34:49 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/07 21:01:53 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,76 @@ void sort_five(t_stack **stack_a, t_stack **stack_b)
 {
 	int i;
 	int len;
-	int *temp;
+	// int *temp;
+	t_stack *max_a;
+	t_stack *min_a;
+	t_stack *max_b;
+	t_stack *min_b;
 
 	i = 0;
 	len = ft_stack_size(*stack_a);
-	temp = malloc(sizeof(int) * ft_stack_size(*stack_b));
+	// temp = malloc(sizeof(int) * ft_stack_size(*stack_b));
 	while (i < len - 3)
 	{
 		node_push(stack_a, stack_b, "pb");
 		i++;
 	}
 	sort_three(stack_a);
-	calculate_distance(stack_b, ft_stack_size(*stack_b));
+	max_a = stack_max_value(*stack_a);
+	ft_printf("last of stack a %d\n", max_a->value);
+	min_a = stack_min_value(*stack_a);
+	ft_printf("first of stack a %d\n", min_a->value);
+	max_b = stack_max_value(*stack_b);
+	ft_printf("last of stack b %d\n", max_b->value);
+	min_b = stack_min_value(*stack_b);
+	ft_printf("first of stack b %d\n", min_b->value);
+	if (max_b->value < max_a->value)
+		node_push(stack_a, stack_b, "pa");
+	else if (min_b->value > min_a->value)
+		node_push(stack_a, stack_b, "pa");
+
+	// while stack_b is not empty
+	while (*stack_b != NULL && max_b < min_a)
+	{
+		max_b = stack_max_value(*stack_b);
+		min_a = stack_min_value(*stack_a);
+		if (max_b->value < min_a->value)
+		{
+			node_push(stack_a, stack_b, "pa");
+			break;
+		}
+
+		// node_push(stack_b, stack_a, "pa");
+		// {
+		// 	nodes_rotate(stack_b, "rb");
+		// 	max_b = stack_max_value(*stack_b);
+		// 	ft_printf("last of stack b %d\n", max_b->value);
+		// 	// break;
+		// }
+		// calculate_distance(stack_b, ft_stack_size(*stack_b));
+		// max_b = stack_max_value(*stack_b);
+		// min_b = stack_min_value(*stack_b);
+		// if (max_b->curr_pos == 0 || min_b->curr_pos == 0)
+		// {
+		// 	node_push(stack_a, stack_b, "pa");
+		// 	// continue;
+		// }
+		// if (max_b->curr_pos < 0)
+		// 	nodes_reverse_rotate(stack_b, "rrb");
+		// else
+		// 	nodes_rotate(stack_b, "rb");
+		// max_b = stack_max_value(*stack_b);
+	}
+
+	while (stack_b != NULL)
+	{
+		node_push(stack_b, stack_a, "pa");
+	}
+	//  calculate_distance(stack_b, ft_stack_size(*stack_b));
+	//  max = stack_max_value(*stack_a);
+	//  ft_printf("il valore massimo è %d\n", max->value);
+	//  min = stack_min_value(*stack_a);
+	//  ft_printf("il valore minimo è %d\n", min->value);
 }
 
 void sort_under_five(t_stack **stack_a, t_stack **stack_b, int len)

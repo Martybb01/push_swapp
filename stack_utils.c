@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/01 16:32:26 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:08:47 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,47 @@ t_stack *ft_stacklast(t_stack *lst)
 	while (lst->next)
 		lst = lst->next;
 	return (lst);
+}
+
+// Return a pointer to a node in a linked list with the max value on it and its index
+t_stack *stack_max_value(t_stack *stack)
+{
+	t_stack *max;
+	int i;
+
+	i = 0;
+	max = stack;
+	while (stack)
+	{
+		if (stack->value > max->value)
+		{
+			max = stack;
+			max->final_idx = i;
+		}
+		stack = stack->next;
+		i++;
+	}
+	ft_printf("l'indice del valore massimo è %d\n", max->final_idx);
+	return (max);
+}
+
+t_stack *stack_min_value(t_stack *stack)
+{
+	t_stack *min;
+	int i;
+
+	i = 0;
+	min = stack;
+	while (stack)
+	{
+		if (stack->value < min->value)
+		{
+			min = stack;
+			min->final_idx = i;
+		}
+		stack = stack->next;
+		i++;
+	}
+	ft_printf("l'indice del valore minimo è %d\n", min->final_idx);
+	return (min);
 }

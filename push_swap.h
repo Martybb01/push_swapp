@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/06 17:34:57 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/07 15:07:50 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void ft_add_new_node(t_stack **stack, int num);
 void print_stack(t_stack *stackm, char *str);
 t_stack *ft_stacklast(t_stack *lst);
 int ft_stack_size(t_stack *stack);
+t_stack *stack_max_value(t_stack *stack);
+t_stack *stack_min_value(t_stack *stack);
 
 t_stack *checker_input(int ac, char **av);
 int check_if_sorted(t_stack *stack_a);
