@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/07 15:08:47 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/07 23:23:22 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,44 @@ t_stack *stack_min_value(t_stack *stack)
 	}
 	ft_printf("l'indice del valore minimo è %d\n", min->final_idx);
 	return (min);
+}
+
+t_stack *stack_top_value(t_stack *stack)
+{
+	t_stack *top;
+
+	top = stack;
+	while (stack)
+	{
+		if (stack->final_idx == 0)
+		{
+			top = stack;
+			break;
+		}
+		stack = stack->next;
+	}
+	return (top);
+}
+
+// calculate distance of every number from top position in stack b
+void calculate_distance(t_stack **stack_b, int len)
+{
+	t_stack *temp;
+	int i;
+	int value;
+
+	i = 0;
+	temp = *stack_b;
+	while (i < len)
+	{
+		temp->curr_pos = i;
+		value = temp->value;
+		if (temp->curr_pos <= len / 2)
+			value = temp->curr_pos;
+		else
+			value = temp->curr_pos - len;
+		ft_printf("L'elemento %d ha valore %d e distanza %d\n", i + 1, temp->value, value);
+		temp = temp->next;
+		i++;
+	}
 }

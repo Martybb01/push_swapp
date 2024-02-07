@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/07 15:07:50 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/07 23:19:04 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,16 @@ typedef struct s_stack
 	struct s_stack *prev;
 } t_stack;
 
+// ------------ UTILS ------------
+
 void ft_free_matrix(char **matrix);
 int ft_syntax_error(char *str);
 int ft_duplicate_error(t_stack *stack, int num);
 void ft_error(void);
+
+// -------------------------------
+
+// ------------ STACK ------------
 
 t_stack *ft_find_last_node(t_stack *head);
 void ft_add_new_node(t_stack **stack, int num);
@@ -45,9 +51,18 @@ t_stack *ft_stacklast(t_stack *lst);
 int ft_stack_size(t_stack *stack);
 t_stack *stack_max_value(t_stack *stack);
 t_stack *stack_min_value(t_stack *stack);
+t_stack *stack_top_value(t_stack *stack);
+
+// -------------------------------
+
+// ------------ CHECKER ------------
 
 t_stack *checker_input(int ac, char **av);
 int check_if_sorted(t_stack *stack_a);
+
+// -------------------------------
+
+// ------------ MOVES ------------
 
 void nodes_swap(t_stack *stack, char *str);
 void nodes_double_swap(t_stack *stack_a, t_stack *stack_b);
@@ -60,10 +75,16 @@ void nodes_double_reverse_rotate(t_stack **stack_a, t_stack **stack_b);
 
 void node_push(t_stack **stack_src, t_stack **stack_dst, char *str);
 
+// -------------------------------
+
+// ------------ SORT ------------
+
 void sort_three(t_stack **stack_a);
 void sort_under_five(t_stack **stack_a, t_stack **stack_b, int len);
-void sort_five(t_stack **stack_a, t_stack **stack_b);
+void sort_small(t_stack **stack_a, t_stack **stack_b, int len);
 
 void quicksort_stack(t_stack **stack_a, t_stack **stack_b, int low, int high);
+
+// -------------------------------
 
 #endif

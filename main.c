@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:06:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/06 17:35:06 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/07 23:21:05 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ int main(int ac, char **av)
 	else
 	{
 		sort_under_five(&temp_a, &temp_b, ft_stack_size(temp_a));
-		//  sort_under_three(&temp_b, ft_stack_size(temp_b));
-		// sort_five(&temp_a, &temp_b);
+		//   sort_under_three(&temp_b, ft_stack_size(temp_b));
+		// sort_small(&temp_a, &temp_b);
 	}
 
 	// quicksort_stack(&temp_a, &temp_b, 0, ft_stack_size(temp_a) - 1);

@@ -14,7 +14,7 @@ swap_op.c \
 rotate_op.c \
 rev_rotate_op.c \
 push_op.c \
-sort_three.c \
+sort_small.c \
 quicksort.c \
 
 OBJ = $(SRC:.c=.o)
