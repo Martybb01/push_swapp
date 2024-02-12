@@ -6,13 +6,13 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/07 23:23:22 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/11 19:19:47 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack *ft_find_last_node(t_stack *head)
+t_stack	*ft_find_last_node(t_stack *head)
 {
 	if (!head)
 		return (NULL);
@@ -21,16 +21,16 @@ t_stack *ft_find_last_node(t_stack *head)
 	return (head);
 }
 
-void ft_add_new_node(t_stack **stack, int num)
+void	ft_add_new_node(t_stack **stack, int num)
 {
-	t_stack *new_node;
-	t_stack *last_node;
+	t_stack	*new_node;
+	t_stack	*last_node;
 
 	if (!stack)
-		return;
+		return ;
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
-		return;
+		return ;
 	new_node->value = num;
 	new_node->next = NULL;
 	if (!*stack)
@@ -43,7 +43,7 @@ void ft_add_new_node(t_stack **stack, int num)
 	}
 }
 
-void print_stack(t_stack *stack, char *str)
+void	print_stack(t_stack *stack, char *str)
 {
 	if (str)
 		ft_printf("%s:\n", str);
@@ -54,9 +54,9 @@ void print_stack(t_stack *stack, char *str)
 	}
 }
 
-int ft_stack_size(t_stack *stack)
+int	ft_stack_size(t_stack *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (stack)
@@ -67,7 +67,7 @@ int ft_stack_size(t_stack *stack)
 	return (i);
 }
 
-t_stack *ft_stacklast(t_stack *lst)
+t_stack	*ft_stacklast(t_stack *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -77,10 +77,10 @@ t_stack *ft_stacklast(t_stack *lst)
 }
 
 // Return a pointer to a node in a linked list with the max value on it and its index
-t_stack *stack_max_value(t_stack *stack)
+t_stack	*stack_max_value(t_stack *stack)
 {
-	t_stack *max;
-	int i;
+	t_stack	*max;
+	int		i;
 
 	i = 0;
 	max = stack;
@@ -98,30 +98,24 @@ t_stack *stack_max_value(t_stack *stack)
 	return (max);
 }
 
-t_stack *stack_min_value(t_stack *stack)
+// find min value in stack
+t_stack	*stack_min_value(t_stack *stack)
 {
-	t_stack *min;
-	int i;
+	t_stack	*min;
 
-	i = 0;
 	min = stack;
 	while (stack)
 	{
 		if (stack->value < min->value)
-		{
 			min = stack;
-			min->final_idx = i;
-		}
 		stack = stack->next;
-		i++;
 	}
-	ft_printf("l'indice del valore minimo è %d\n", min->final_idx);
 	return (min);
 }
 
-t_stack *stack_top_value(t_stack *stack)
+t_stack	*stack_top_value(t_stack *stack)
 {
-	t_stack *top;
+	t_stack	*top;
 
 	top = stack;
 	while (stack)
@@ -129,7 +123,7 @@ t_stack *stack_top_value(t_stack *stack)
 		if (stack->final_idx == 0)
 		{
 			top = stack;
-			break;
+			break ;
 		}
 		stack = stack->next;
 	}
@@ -137,11 +131,11 @@ t_stack *stack_top_value(t_stack *stack)
 }
 
 // calculate distance of every number from top position in stack b
-void calculate_distance(t_stack **stack_b, int len)
+void	calculate_distance(t_stack **stack_b, int len)
 {
-	t_stack *temp;
-	int i;
-	int value;
+	t_stack	*temp;
+	int		i;
+	int		value;
 
 	i = 0;
 	temp = *stack_b;
@@ -153,8 +147,24 @@ void calculate_distance(t_stack **stack_b, int len)
 			value = temp->curr_pos;
 		else
 			value = temp->curr_pos - len;
-		ft_printf("L'elemento %d ha valore %d e distanza %d\n", i + 1, temp->value, value);
+		ft_printf("L'elemento %d ha valore %d e distanza %d\n", i + 1,
+			temp->value, value);
 		temp = temp->next;
 		i++;
 	}
+}
+
+int	is_closer_to_top(t_stack *stack, int x, int len)
+{
+	int distance;
+
+	distance = 0;
+	while (stack != NULL)
+	{
+		if (stack->value == x)
+			break ;
+		stack = stack->next;
+		distance++;
+	}
+	return (distance < len / 2);
 }

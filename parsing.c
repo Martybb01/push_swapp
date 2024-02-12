@@ -6,20 +6,19 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/01 23:16:46 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:31:01 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static long ft_atol(const char *str)
+static long	ft_atol(const char *str)
 {
-	long num;
-	int sign;
+	long	num;
+	int		sign;
 
 	num = 0;
 	sign = 1;
-
 	while (*str && ((*str >= 9 && *str <= 13) || *str == ' '))
 		str++;
 	if (*str == '+')
@@ -29,7 +28,6 @@ static long ft_atol(const char *str)
 		sign = -1;
 		str++;
 	}
-
 	while (*str && *str >= '0' && *str <= '9')
 	{
 		num = num * 10 + (*str - '0');
@@ -37,16 +35,15 @@ static long ft_atol(const char *str)
 	}
 	if (num > INT_MAX || num < INT_MIN)
 		ft_error();
-
 	return (num * sign);
 }
 
-t_stack *checker_string(char **av)
+t_stack	*checker_string(char **av)
 {
-	t_stack *stack_a;
-	char **tmp;
-	int i;
-	int j;
+	t_stack	*stack_a;
+	char	**tmp;
+	int		i;
+	int		j;
 
 	stack_a = NULL;
 	i = 0;
@@ -57,24 +54,28 @@ t_stack *checker_string(char **av)
 		ft_duplicate_error(stack_a, ft_atoi(tmp[i]));
 		j = ft_atol(tmp[i]);
 		ft_add_new_node(&stack_a, j);
-		//  printf("j = %d\n", j);
 		i++;
 	}
 	free(tmp);
 	return (stack_a);
 }
 
-t_stack *checker_input(int ac, char **av)
+/*
+|| (av[1][0] == ' ' && av[1][1] == ' ')
+*/
+
+t_stack	*checker_input(int ac, char **av)
 {
-	t_stack *stack_a;
-	int i;
-	int j;
+	t_stack	*stack_a;
+	int		i;
+	int		j;
 
 	i = 1;
 	stack_a = NULL;
-	if ((ac == 2 && !av[1][0]) || ac == 1)
+	if ((ac == 2 && (!av[1][0] || !av[1][1] || (av[1][0] == ' '
+					&& av[1][1] == ' '))) || ac == 1)
 		ft_error();
-	else if (ac == 2 && av[1][1] != '\0')
+	else if (ac == 2)
 		stack_a = checker_string(av);
 	else if (ac > 2)
 	{
@@ -84,7 +85,6 @@ t_stack *checker_input(int ac, char **av)
 			ft_duplicate_error(stack_a, ft_atoi(av[i]));
 			j = ft_atol(av[i]);
 			ft_add_new_node(&stack_a, j);
-			// printf("j = %d\n", j);
 			i++;
 		}
 	}

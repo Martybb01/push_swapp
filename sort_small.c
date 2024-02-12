@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three.c                                       :+:      :+:    :+:   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:24 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/07 23:23:27 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/12 13:18:24 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 // algo to sort three numbers
 
-void sort_three(t_stack **stack_a)
+void	sort_three(t_stack **stack_a)
 {
-	if ((*stack_a)->value > (*stack_a)->next->value && (*stack_a)->value < (*stack_a)->next->next->value)
+	if ((*stack_a)->value > (*stack_a)->next->value
+		&& (*stack_a)->value < (*stack_a)->next->next->value)
 		nodes_swap(*stack_a, "sa");
-	else if ((*stack_a)->value > (*stack_a)->next->value && (*stack_a)->value > (*stack_a)->next->next->value)
+	else if ((*stack_a)->value > (*stack_a)->next->value
+		&& (*stack_a)->value > (*stack_a)->next->next->value)
 	{
 		if ((*stack_a)->next->value > (*stack_a)->next->next->value)
 		{
@@ -28,11 +30,19 @@ void sort_three(t_stack **stack_a)
 		else
 			nodes_rotate(stack_a, "ra");
 	}
-	else if ((*stack_a)->value < (*stack_a)->next->value && (*stack_a)->value > (*stack_a)->next->next->value)
+	else if ((*stack_a)->value < (*stack_a)->next->value
+		&& (*stack_a)->value > (*stack_a)->next->next->value)
 	{
 		nodes_reverse_rotate(stack_a, "rra");
 	}
-	else if ((*stack_a)->value < (*stack_a)->next->value && (*stack_a)->value < (*stack_a)->next->next->value)
+	else if ((*stack_a)->value > (*stack_a)->next->value
+		&& (*stack_a)->next->value > (*stack_a)->next->next->value)
+	{
+		nodes_swap(*stack_a, "sa");
+		nodes_rotate(stack_a, "rra");
+	}
+	else if ((*stack_a)->value < (*stack_a)->next->value
+		&& (*stack_a)->value < (*stack_a)->next->next->value)
 	{
 		nodes_swap(*stack_a, "sa");
 		nodes_rotate(stack_a, "ra");
@@ -51,46 +61,97 @@ void sort_three(t_stack **stack_a)
 // ft_printf("stack b prev value %d\n", (*stack_b)->prev->value);
 // ft_printf("stack b next value %d\n", (*stack_b)->next->value);
 
-void sort_small(t_stack **stack_a, t_stack **stack_b, int len)
+void	ft_sort_array(int *array, int len)
 {
-	int i;
+	int	i;
+	int	j;
+	int	temp;
 
 	i = 0;
-	while (i < len - 3)
+	while (i < len)
 	{
-		node_push(stack_a, stack_b, "pb");
+		j = i + 1;
+		while (j < len)
+		{
+			if (array[i] > array[j])
+			{
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+			}
+			j++;
+		}
 		i++;
 	}
-	sort_three(stack_a);
-
-	if (len == 4)
-	{
-		node_push(stack_b, stack_a, "pa");
-		nodes_rotate(stack_a, "ra");
-	}
-	else if (len == 5)
-	{
-		nodes_rotate(stack_a, "ra");
-		nodes_rotate(stack_a, "ra");
-		node_push(stack_b, stack_a, "pa");
-		nodes_reverse_rotate(stack_a, "rra");
-		nodes_reverse_rotate(stack_a, "rra");
-		node_push(stack_b, stack_a, "pa");
-		nodes_rotate(stack_a, "ra");
-	}
+	// while (i < len)
+	// {
+	// 	ft_printf("array[i] %d\n", array[i]);
+	// 	i++;
+	// }
 }
 
-void sort_under_five(t_stack **stack_a, t_stack **stack_b, int len)
+void	sort_small(t_stack **stack_a, t_stack **stack_b, int len)
 {
-	if (len == 1)
-		return;
-	else if (len == 2)
+	int		*array;
+	int		i;
+	int		smallest;
+	int		smallest_2nd;
+	t_stack	*temp;
+
+	i = 0;
+	array = malloc(sizeof(int) * len);
+	if (!array)
+		ft_error();
+	temp = *stack_a;
+	while (i < len)
 	{
-		if ((*stack_a)->value > (*stack_a)->next->value)
-			nodes_swap(*stack_a, "sa");
+		array[i] = temp->value;
+		temp = temp->next;
+		i++;
 	}
-	else if (len == 3)
-		sort_three(stack_a);
-	else if (len > 3)
-		sort_small(stack_a, stack_b, len);
+	ft_sort_array(array, len);
+	smallest = array[0];
+	smallest_2nd = array[1];
+	if (len == 4)
+	{
+		while ((*stack_a)->value != smallest)
+		{
+			if (is_closer_to_top(*stack_a, smallest, len))
+				nodes_rotate(stack_a, "ra");
+			else
+				nodes_reverse_rotate(stack_a, "rra");
+		}
+		if (!check_if_sorted(*stack_a))
+		{
+			node_push(stack_a, stack_b, "pb");
+			sort_three(stack_a);
+			node_push(stack_b, stack_a, "pa");
+		}
+	}
+	else
+	{
+		while ((*stack_a)->value != smallest)
+		{
+			if (is_closer_to_top(*stack_a, smallest, len))
+				nodes_rotate(stack_a, "ra");
+			else
+				nodes_reverse_rotate(stack_a, "rra");
+		}
+		node_push(stack_a, stack_b, "pb");
+		while ((*stack_a)->value != smallest_2nd)
+		{
+			if (is_closer_to_top(*stack_a, smallest_2nd, len))
+				nodes_rotate(stack_a, "ra");
+			else
+				nodes_reverse_rotate(stack_a, "rra");
+		}
+		if (!check_if_sorted(*stack_a))
+		{
+			node_push(stack_a, stack_b, "pb");
+			sort_three(stack_a);
+		}
+		while (*stack_b != NULL)
+			node_push(stack_b, stack_a, "pa");
+	}
+	free(array);
 }
