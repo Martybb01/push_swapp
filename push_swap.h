@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/11 19:20:25 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:01:19 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_stack
 void				ft_free_matrix(char **matrix);
 int					ft_syntax_error(char *str);
 int					ft_duplicate_error(t_stack *stack, int num);
+void				ft_sign_error(char *str);
 void				ft_error(void);
 
 // -------------------------------
@@ -86,8 +87,12 @@ void				sort_three(t_stack **stack_a);
 void				sort_small(t_stack **stack_a, t_stack **stack_b, int len);
 
 int					is_closer_to_top(t_stack *stack, int x, int len);
-void				quicksort_stack(t_stack **stack_a, t_stack **stack_b,
-						int low, int high);
+int					is_on_top(t_stack *stack, int x);
+void				quick_sort(int *array, int low, int high);
+void				quicksort_stack(t_stack **stack_a, int low, int high);
+
+void				radix_sort(t_stack **stack_a, t_stack **stack_b);
+void				mergeSort(int arr[], int l, int r);
 
 // -------------------------------
 

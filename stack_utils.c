@@ -6,42 +6,11 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/11 19:19:47 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:00:50 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-t_stack	*ft_find_last_node(t_stack *head)
-{
-	if (!head)
-		return (NULL);
-	while (head->next)
-		head = head->next;
-	return (head);
-}
-
-void	ft_add_new_node(t_stack **stack, int num)
-{
-	t_stack	*new_node;
-	t_stack	*last_node;
-
-	if (!stack)
-		return ;
-	new_node = malloc(sizeof(t_stack));
-	if (!new_node)
-		return ;
-	new_node->value = num;
-	new_node->next = NULL;
-	if (!*stack)
-		*stack = new_node;
-	else
-	{
-		last_node = ft_find_last_node(*stack);
-		last_node->next = new_node;
-		new_node->prev = last_node;
-	}
-}
 
 void	print_stack(t_stack *stack, char *str)
 {
@@ -156,7 +125,7 @@ void	calculate_distance(t_stack **stack_b, int len)
 
 int	is_closer_to_top(t_stack *stack, int x, int len)
 {
-	int distance;
+	int	distance;
 
 	distance = 0;
 	while (stack != NULL)
@@ -167,4 +136,26 @@ int	is_closer_to_top(t_stack *stack, int x, int len)
 		distance++;
 	}
 	return (distance < len / 2);
+}
+
+int	is_on_top(t_stack *stack, int x)
+{
+	int		index;
+	t_stack	*current;
+
+	index = 0;
+	current = stack;
+	while (current != NULL)
+	{
+		if (current->value == x)
+			break ;
+		current = current->next;
+		index++;
+	}
+	if (current == NULL)
+		return (-1);
+	if (index < ft_stack_size(stack) / 2)
+		return (1);
+	else
+		return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:24 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/12 13:18:24 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/14 11:47:48 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,6 @@ void	ft_sort_array(int *array, int len)
 		}
 		i++;
 	}
-	// while (i < len)
-	// {
-	// 	ft_printf("array[i] %d\n", array[i]);
-	// 	i++;
-	// }
 }
 
 void	sort_small(t_stack **stack_a, t_stack **stack_b, int len)

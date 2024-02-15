@@ -6,15 +6,15 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:36:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/01/25 17:56:08 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:43:13 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_free_matrix(char **matrix)
+void	ft_free_matrix(char **matrix)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (matrix[i])
@@ -25,14 +25,15 @@ void ft_free_matrix(char **matrix)
 	free(matrix);
 }
 
-int ft_syntax_error(char *str)
+int	ft_syntax_error(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == 32 || str[i] == 45 || str[i] == 43 || (str[i] >= 48 && str[i] <= 57))
+		if (str[i] == 32 || str[i] == 45 || str[i] == 43 || (str[i] >= 48
+				&& str[i] <= 57))
 		{
 			if (str[i + 1] == 43 || str[i + 1] == 45)
 				ft_error();
@@ -44,7 +45,7 @@ int ft_syntax_error(char *str)
 	return (0);
 }
 
-int ft_duplicate_error(t_stack *stack, int num)
+int	ft_duplicate_error(t_stack *stack, int num)
 {
 	if (stack == NULL)
 		return (0);
@@ -57,7 +58,23 @@ int ft_duplicate_error(t_stack *stack, int num)
 	return (0);
 }
 
-void ft_error(void)
+void	ft_sign_error(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '+' || str[i] == '-')
+		{
+			if ((str[i + 1] == 32 && str[i - 1] == 32) || (str[i + 1] == '\0'))
+				ft_error();
+		}
+		i++;
+	}
+}
+
+void	ft_error(void)
 {
 	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
