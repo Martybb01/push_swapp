@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/15 12:00:50 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/18 17:25:43 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,24 +138,40 @@ int	is_closer_to_top(t_stack *stack, int x, int len)
 	return (distance < len / 2);
 }
 
-int	is_on_top(t_stack *stack, int x)
-{
-	int		index;
-	t_stack	*current;
+// int	is_on_top(t_stack *stack, int x)
+// {
+// 	int		index;
+// 	t_stack	*current;
 
-	index = 0;
-	current = stack;
-	while (current != NULL)
-	{
-		if (current->value == x)
-			break ;
-		current = current->next;
-		index++;
-	}
-	if (current == NULL)
-		return (-1);
-	if (index < ft_stack_size(stack) / 2)
-		return (1);
-	else
+// 	index = 0;
+// 	current = stack;
+// 	while (current != NULL)
+// 	{
+// 		if (current->value == x)
+// 			break ;
+// 		current = current->next;
+// 		index++;
+// 	}
+// 	if (current == NULL)
+// 		return (-1);
+// 	if (index < ft_stack_size(stack) / 2)
+// 		return (1);
+// 	else
+// 		return (0);
+// }
+int	is_on_top(t_stack *stack, t_stack *stack_ptr, int x, int len)
+{
+	int	distance;
+
+	distance = 0;
+	if (stack == NULL)
 		return (0);
+	while (stack_ptr != NULL)
+	{
+		if (stack_ptr->value == x)
+			break ;
+		stack_ptr = stack_ptr->next;
+		distance++;
+	}
+	return (distance < len / 2); // Element is not on top of the stack
 }

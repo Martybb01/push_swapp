@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:38:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/15 11:46:28 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/18 19:52:38 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	quicksort_stack(t_stack **stack_a, int low, int high)
 	int		*input;
 	int		i;
 	t_stack	*temp;
-	int		pos;
 
 	input = malloc(sizeof(int) * ft_stack_size(*stack_a));
 	if (!input)
@@ -100,8 +99,8 @@ void	quicksort_stack(t_stack **stack_a, int low, int high)
 	temp = *stack_a;
 	while (i < ft_stack_size(*stack_a))
 	{
-		pos = binary_search(input, ft_stack_size(*stack_a), temp->value);
-		temp->value = pos;
+		temp->value = binary_search(input, ft_stack_size(*stack_a),
+				temp->value);
 		temp = temp->next;
 		i++;
 	}

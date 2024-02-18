@@ -1,0 +1,20 @@
+{
+	"configurations": [
+		{
+			"name": "(gdb) Launch",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/push_swap",
+			"args": [
+				"1518875529",
+				"1915359470",
+				"-1426353538",
+				"439876703",
+				"1566803676"
+			],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}",
+			"externalConsole": false,
+		}
+	]
+}
