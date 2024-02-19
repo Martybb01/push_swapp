@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/18 17:26:54 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:29:27 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_stack
 
 // ------------ UTILS ------------
 
-void				ft_free_matrix(char **matrix);
+void				ft_free_stack(t_stack *stack);
 int					ft_syntax_error(char *str);
 int					ft_duplicate_error(t_stack *stack, int num);
 void				ft_sign_error(char *str);

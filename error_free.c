@@ -6,23 +6,23 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:36:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/12 17:43:13 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:29:22 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_free_matrix(char **matrix)
+void	ft_free_stack(t_stack *stack)
 {
-	int	i;
+	t_stack	*temp;
 
-	i = 0;
-	while (matrix[i])
+	while (stack)
 	{
-		free(matrix[i]);
-		i++;
+		temp = stack;
+		stack = stack->next;
+		free(temp);
 	}
-	free(matrix);
+	stack = NULL;
 }
 
 int	ft_syntax_error(char *str)

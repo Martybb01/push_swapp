@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/19 18:46:02 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:34:13 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ t_stack	*checker_string(char **av)
 	stack_a = NULL;
 	i = 0;
 	tmp = ft_split(av[1], 32);
+	if (!tmp)
+	{
+		free(tmp);
+		ft_error();
+	}
 	while (tmp[i])
 	{
 		ft_sign_error(tmp[i]);
