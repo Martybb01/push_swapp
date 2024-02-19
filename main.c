@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:06:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/18 17:56:50 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:29:02 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(int ac, char **av)
 	}
 	else
 		routing(&temp_a, &temp_b);
-	print_stack(temp_a, "stack_a");
-	print_stack(temp_b, "stack_b");
+	// print_stack(temp_a, "stack_a");
+	// print_stack(temp_b, "stack_b");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/13 10:18:01 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:46:02 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,33 @@ t_stack	*checker_string(char **av)
 	return (stack_a);
 }
 
+int	ft_is_valid(int ac, char **av)
+{
+	int	string_count;
+	int	int_count;
+	int	i;
+	int	j;
+
+	string_count = 0;
+	int_count = 0;
+	i = 1;
+	j = 0;
+	while (ac > 1)
+	{
+		// if found more than one string return error
+		if (ft_strchr(av[ac - 1], ' '))
+			string_count++;
+		else if (av[i][j] >= '0' && av[i][j] <= '9')
+			int_count++;
+		ac--;
+	}
+	if (string_count > 1)
+		ft_error();
+	else if (string_count == 1 && int_count > 0)
+		ft_error();
+	return (0);
+}
+
 t_stack	*checker_input(int ac, char **av)
 {
 	t_stack	*stack_a;
@@ -84,6 +111,7 @@ t_stack	*checker_input(int ac, char **av)
 	{
 		while (i < ac)
 		{
+			ft_is_valid(ac, av);
 			ft_sign_error(av[i]);
 			ft_syntax_error(av[i]);
 			ft_duplicate_error(stack_a, ft_atoi(av[i]));
