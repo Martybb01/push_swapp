@@ -6,14 +6,15 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:10:22 by marboccu          #+#    #+#             */
-/*   Updated: 2023/10/17 17:45:29 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/19 23:21:20 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdio.h>
+# include <limits.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -30,6 +31,7 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+void				ft_swap(int *a, int *b);
 int					ft_strlen(const char *s);
 unsigned int		ft_strlcpy(char *dest, const char *src, size_t size);
 unsigned int		ft_strlcat(char *dest, char *src, unsigned int size);

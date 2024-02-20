@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 16:58:17 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/19 14:55:40 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/20 00:39:16 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,7 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 		while (j < len)
 		{
 			if ((((*stack_a)->value >> i) & 1) == 1)
-			{
-				if (is_closer_to_top(*stack_a, (*stack_a)->value, len) == 1)
-				{
-					nodes_rotate(stack_a, "ra");
-				}
-				else
-				{
-					nodes_reverse_rotate(stack_a, "rra");
-				}
-			}
+				nodes_rotate(stack_a, "ra");
 			else
 				node_push(stack_a, stack_b, "pb");
 			++j;

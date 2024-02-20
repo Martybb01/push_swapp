@@ -6,20 +6,11 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:38:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/18 19:52:38 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/19 23:13:23 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	swap(int *a, int *b)
-{
-	int	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
 
 int	sub_partition(int *array, int low, int high)
 {
@@ -35,11 +26,11 @@ int	sub_partition(int *array, int low, int high)
 		if (array[j] < pivot)
 		{
 			i++;
-			swap(&array[i], &array[j]);
+			ft_swap(&array[i], &array[j]);
 		}
 		j++;
 	}
-	swap(&array[i + 1], &array[high]);
+	ft_swap(&array[i + 1], &array[high]);
 	return (i + 1);
 }
 

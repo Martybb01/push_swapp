@@ -41,7 +41,8 @@ SRCS = ft_atoi.c \
 	ft_strtrim.c \
 	ft_substr.c \
 	ft_tolower.c \
-	ft_toupper.c
+	ft_toupper.c \
+	ft_swap.c \
 
 SRCS := $(addprefix $(PATH_SRCS), $(SRCS))
 

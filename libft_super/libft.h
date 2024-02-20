@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:10:22 by marboccu          #+#    #+#             */
-/*   Updated: 2023/12/05 18:11:17 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/19 23:21:25 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char				*ft_strnstr(const char *bigstr, const char *smallstr,
 						size_t len);
 int					ft_atoi(const char *str);
 char				*ft_strdup(char *src);
+void				ft_swap(int *a, int *b);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
