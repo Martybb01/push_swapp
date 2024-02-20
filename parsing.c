@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/19 23:21:43 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:43:49 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_stack	*checker_string(char **av)
 	tmp = ft_split(av[1], 32);
 	if (!tmp)
 	{
-		free(tmp);
+		ft_free_matrix(tmp);
 		ft_error();
 	}
 	while (tmp[i])
@@ -68,7 +68,7 @@ t_stack	*checker_string(char **av)
 		ft_add_new_node(&stack_a, j);
 		i++;
 	}
-	free(tmp);
+	ft_free_matrix(tmp);
 	return (stack_a);
 }
 
@@ -85,7 +85,6 @@ int	ft_is_valid(int ac, char **av)
 	j = 0;
 	while (ac > 1)
 	{
-		// if found more than one string return error
 		if (ft_strchr(av[ac - 1], ' '))
 			string_count++;
 		else if (av[i][j] >= '0' && av[i][j] <= '9')

@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:36:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/19 20:29:22 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:42:49 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ void	ft_free_stack(t_stack *stack)
 		free(temp);
 	}
 	stack = NULL;
+}
+
+void	ft_free_matrix(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }
 
 int	ft_syntax_error(char *str)
@@ -58,7 +71,7 @@ int	ft_duplicate_error(t_stack *stack, int num)
 	return (0);
 }
 
-void	ft_sign_error(char *str)
+int	ft_sign_error(char *str)
 {
 	int	i;
 
@@ -72,6 +85,7 @@ void	ft_sign_error(char *str)
 		}
 		i++;
 	}
+	return (0);
 }
 
 void	ft_error(void)
