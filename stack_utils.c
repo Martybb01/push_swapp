@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/18 17:25:43 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:52:22 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,41 @@ t_stack	*ft_stacklast(t_stack *lst)
 }
 
 // Return a pointer to a node in a linked list with the max value on it and its index
-t_stack	*stack_max_value(t_stack *stack)
-{
-	t_stack	*max;
-	int		i;
+// t_stack	*stack_max_value(t_stack *stack)
+// {
+// 	t_stack	*max;
+// 	int		i;
 
-	i = 0;
-	max = stack;
+// 	i = 0;
+// 	max = stack;
+// 	while (stack)
+// 	{
+// 		if (stack->value > max->value)
+// 		{
+// 			max = stack;
+// 			max->final_idx = i;
+// 		}
+// 		stack = stack->next;
+// 		i++;
+// 	}
+// 	ft_printf("l'indice del valore massimo è %d\n", max->final_idx);
+// 	return (max);
+// }
+
+int	stack_max_value(t_stack *stack)
+{
+	int	max;
+
+	if (!stack)
+		return (1);
+	max = stack->value;
 	while (stack)
 	{
-		if (stack->value > max->value)
-		{
-			max = stack;
-			max->final_idx = i;
-		}
+		if (stack->value > max)
+			max = stack->value;
 		stack = stack->next;
-		i++;
 	}
-	ft_printf("l'indice del valore massimo è %d\n", max->final_idx);
+	// ft_printf("Il valore massimo è %d\n", max);
 	return (max);
 }
 
@@ -138,27 +155,6 @@ int	is_closer_to_top(t_stack *stack, int x, int len)
 	return (distance < len / 2);
 }
 
-// int	is_on_top(t_stack *stack, int x)
-// {
-// 	int		index;
-// 	t_stack	*current;
-
-// 	index = 0;
-// 	current = stack;
-// 	while (current != NULL)
-// 	{
-// 		if (current->value == x)
-// 			break ;
-// 		current = current->next;
-// 		index++;
-// 	}
-// 	if (current == NULL)
-// 		return (-1);
-// 	if (index < ft_stack_size(stack) / 2)
-// 		return (1);
-// 	else
-// 		return (0);
-// }
 int	is_on_top(t_stack *stack, t_stack *stack_ptr, int x, int len)
 {
 	int	distance;

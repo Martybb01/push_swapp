@@ -6,11 +6,56 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 16:58:17 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/23 16:37:24 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:05:09 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// void	msd_radix_recursive(t_stack **stack_a, t_stack **stack_b, int bit_idx,
+// 		int max_bits)
+// {
+// 	int	len;
+// 	int	count_pa;
+// 	int	i;
+
+// 	if (bit_idx < 0 || bit_idx > max_bits)
+// 		return ;
+// 	len = ft_stack_size(*stack_a);
+// 	count_pa = 0;
+// 	i = 0;
+// 	while (i < len)
+// 	{
+// 		if ((((*stack_a)->value >> bit_idx) & 1) == 0)
+// 		{
+// 			node_push(stack_a, stack_b, "pb");
+// 			count_pa++;
+// 		}
+// 		else
+// 			nodes_rotate(stack_a, "ra");
+// 		i++;
+// 	}
+// 	while (count_pa > 0)
+// 	{
+// 		node_push(stack_b, stack_a, "pa");
+// 		count_pa--;
+// 	}
+// 	msd_radix_recursive(stack_a, stack_b, bit_idx - 1, max_bits);
+// }
+
+// void	radix_sort(t_stack **stack_a, t_stack **stack_b)
+// {
+// 	int	max_bits;
+// 	int	max_num;
+
+// 	map_values(stack_a);
+// 	max_num = stack_max_value(*stack_a);
+// 	ft_printf("max_num: %d\n", max_num);
+// 	max_bits = 0;
+// 	while ((max_num >> max_bits) != 0)
+// 		++max_bits;
+// 	msd_radix_recursive(stack_a, stack_b, max_bits - 1, max_bits);
+// }
 
 void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 {
@@ -54,7 +99,5 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 			node_push(stack_b, stack_a, "pa");
 			count_pa--;
 		}
-		// while (*stack_b)
-		// 	node_push(stack_b, stack_a, "pa");
 	}
 }
