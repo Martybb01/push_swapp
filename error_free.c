@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:36:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/20 17:42:49 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:03:42 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ int	ft_duplicate_error(t_stack *stack, int num)
 	while (stack)
 	{
 		if (stack->value == num)
+		{
+			ft_free_stack(stack);
 			ft_error();
+		}
 		stack = stack->next;
 	}
 	return (0);

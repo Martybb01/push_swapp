@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:25:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/19 20:30:07 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/23 13:52:52 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	ft_add_new_node(t_stack **stack, int num)
 		return ;
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
+	{
+		ft_free_stack(new_node);
 		return ;
+	}
 	new_node->value = num;
 	new_node->next = NULL;
 	if (!*stack)
@@ -38,6 +41,7 @@ void	ft_add_new_node(t_stack **stack, int num)
 	else
 	{
 		last_node = ft_find_last_node(*stack);
+		// ft_free_stack(new_node);
 		last_node->next = new_node;
 		new_node->prev = last_node;
 	}

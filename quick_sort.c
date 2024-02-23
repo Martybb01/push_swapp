@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:38:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/19 23:13:23 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:51:25 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,77 +46,101 @@ void	quick_sort(int *array, int low, int high)
 	}
 }
 
-int	binary_search(int *array, int num, int target)
+void	map_values(t_stack **stack_a)
 {
-	int	low;
-	int	high;
-	int	mid;
-
-	low = 0;
-	high = num;
-	while (low <= high)
-	{
-		mid = low + (high - low) / 2;
-		if (array[mid] == target)
-			return (mid);
-		else if (array[mid] < target)
-			low = mid + 1;
-		else
-			high = mid - 1;
-	}
-	return (-1);
-}
-
-void	quicksort_stack(t_stack **stack_a, int low, int high)
-{
-	int		*input;
+	int		len;
+	int		*temp_array;
 	int		i;
-	t_stack	*temp;
+	t_stack	*current;
 
-	input = malloc(sizeof(int) * ft_stack_size(*stack_a));
-	if (!input)
+	len = ft_stack_size(*stack_a);
+	temp_array = malloc(sizeof(int) * len);
+	if (!temp_array)
 		ft_error();
 	i = 0;
-	temp = *stack_a;
-	while (i < ft_stack_size(*stack_a))
+	current = *stack_a;
+	while (i < len)
 	{
-		input[i] = temp->value;
-		temp = temp->next;
+		temp_array[i] = current->value;
+		current = current->next;
 		i++;
 	}
-	quick_sort(input, low, high);
-	// - restituisce stack NON ordinato ma con la mappatura
-	i = 0;
-	temp = *stack_a;
-	while (i < ft_stack_size(*stack_a))
+	quick_sort(temp_array, 0, len - 1);
+	current = *stack_a;
+	while (current != NULL)
 	{
-		temp->value = binary_search(input, ft_stack_size(*stack_a),
-				temp->value);
-		temp = temp->next;
-		i++;
+		i = 0;
+		while (i < len)
+		{
+			if (current->value == temp_array[i])
+			{
+				current->value = i;
+				break ;
+			}
+			i++;
+		}
+		current = current->next;
 	}
-	// - restituisce stack ordinato
-	// i = 0;
-	// temp = *stack_a;
-	// while (i < ft_stack_size(*stack_a))
-	// {
-	// 	temp->value = input[i];
-	// 	temp = temp->next;
-	// 	i++;
-	// }
-	free(input);
+	free(temp_array);
 }
 
-// test quick_sort
-
-// int	main(void)
+// int	binary_search(int *array, int num, int target)
 // {
-// 	int	array[] = {10, 7, 8, 9, 1, 5};
-// 	int	n;
+// 	int	low;
+// 	int	high;
+// 	int	mid;
 
-// 	n = sizeof(array) / sizeof(array[0]);
-// 	quick_sort(array, 0, n - 1);
-// 	ft_printf("Sorted array: \n");
-// 	ft_print_array(array, n);
-// 	return (0);
+// 	low = 0;
+// 	high = num;
+// 	while (low <= high)
+// 	{
+// 		mid = low + (high - low) / 2;
+// 		if (array[mid] == target)
+// 			return (mid);
+// 		else if (array[mid] < target)
+// 			low = mid + 1;
+// 		else
+// 			high = mid - 1;
+// 	}
+// 	return (-1);
+// }
+
+// void	quicksort_stack(t_stack **stack_a, int low, int high)
+// {
+// 	int		*input;
+// 	int		i;
+// 	t_stack	*temp;
+
+// 	input = malloc(sizeof(int) * ft_stack_size(*stack_a));
+// 	if (!input)
+// 		ft_error();
+// 	i = 0;
+// 	temp = *stack_a;
+// 	while (i < ft_stack_size(*stack_a))
+// 	{
+// 		input[i] = temp->value;
+// 		temp = temp->next;
+// 		i++;
+// 	}
+// 	quick_sort(input, low, high);
+// 	// - restituisce stack NON ordinato ma con la mappatura
+// 	i = 0;
+// 	temp = *stack_a;
+// 	while (i < ft_stack_size(*stack_a))
+// 	{
+// 		temp->value = binary_search(input, ft_stack_size(*stack_a),
+// 				temp->value);
+// 		temp = temp->next;
+// 		i++;
+// 	}
+// 	// - restituisce stack ordinato
+// 	// i = 0;
+// 	// temp = *stack_a;
+// 	// while (i < ft_stack_size(*stack_a))
+// 	// {
+// 	// 	temp->value = input[i];
+// 	// 	temp = temp->next;
+// 	// 	i++;
+// 	// }
+// 	free(input);
 // }

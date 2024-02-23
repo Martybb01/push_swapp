@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/20 17:43:06 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:46:01 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_stack
 	int				pivot;
 	int				curr_pos;
 	int				final_idx;
-	int				push_price;
 	bool			cheapest;
 	bool			above_mid;
 	struct s_stack	*next;
@@ -91,7 +90,8 @@ int					is_closer_to_top(t_stack *stack, int x, int len);
 int					is_on_top(t_stack *stack, t_stack *stack_ptr, int x,
 						int len);
 void				quick_sort(int *array, int low, int high);
-void				quicksort_stack(t_stack **stack_a, int low, int high);
+// void				quicksort_stack(t_stack **stack_a, int low, int high);
+void				map_values(t_stack **stack_a);
 
 void				radix_sort(t_stack **stack_a, t_stack **stack_b);
 void				mergeSort(int arr[], int l, int r);

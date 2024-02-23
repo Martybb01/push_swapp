@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 16:58:17 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/20 00:39:16 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:37:24 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,42 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 	int	i;
 	int	j;
 	int	max_bits;
+	int	count_pa;
+	int	count_ra;
 
 	len = ft_stack_size(*stack_a);
 	max_num = len - 1;
 	max_bits = 0;
-	quicksort_stack(stack_a, 0, len - 1);
+	map_values(stack_a);
 	while ((max_num >> max_bits) != 0)
 		++max_bits;
 	i = 0;
 	while (i < max_bits)
 	{
+		count_ra = 0;
+		count_pa = 0;
 		j = 0;
 		while (j < len)
 		{
-			if ((((*stack_a)->value >> i) & 1) == 1)
-				nodes_rotate(stack_a, "ra");
-			else
+			if ((((*stack_a)->value >> i) & 1) == 0)
+			{
 				node_push(stack_a, stack_b, "pb");
-			++j;
+				count_pa++;
+			}
+			else
+			{
+				nodes_rotate(stack_a, "ra");
+				count_ra++;
+			}
+			j++;
 		}
 		i++;
-		while (*stack_b)
+		while (count_pa > 0)
+		{
 			node_push(stack_b, stack_a, "pa");
+			count_pa--;
+		}
+		// while (*stack_b)
+		// 	node_push(stack_b, stack_a, "pa");
 	}
 }
