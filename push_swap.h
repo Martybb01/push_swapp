@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/24 17:42:19 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:28:05 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int					is_closer_to_top(t_stack *stack, int x, int len);
 int					is_on_top(t_stack *stack, t_stack *stack_ptr, int x,
 						int len);
 void				quick_sort(int *array, int low, int high);
-// void				quicksort_stack(t_stack **stack_a, int low, int high);
 void				map_values(t_stack **stack_a);
 
 void				radix_sort(t_stack **stack_a, t_stack **stack_b);

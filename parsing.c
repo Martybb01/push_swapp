@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/24 17:42:15 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:29:28 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,26 +68,8 @@ t_stack	*checker_string(char **av)
 			ft_free_stack(stack_a);
 			ft_error();
 		}
-		// if (!ft_sign_error(tmp[i]) || !ft_syntax_error(tmp[i]))
-		// {
-		// 	ft_free_matrix(tmp);
-		// 	ft_free_stack(stack_a);
-		// 	ft_error();
-		// }
-		// else
-		// {
-		// 	j = ft_atol(tmp[i]);
-		// 	ft_add_new_node(&stack_a, j);
-		// }
 		j = ft_atol(tmp[i]);
 		ft_add_new_node(&stack_a, j);
-		// if (!ft_duplicate_error(stack_a, ft_atoi(tmp[i])))
-		// {
-		// 	ft_free_matrix(tmp);
-		// 	ft_error();
-		// }
-		// j = ft_atol(tmp[i]);
-		// ft_add_new_node(&stack_a, j);
 		i++;
 	}
 	ft_free_matrix(tmp);
@@ -144,10 +126,6 @@ t_stack	*checker_input(int ac, char **av)
 				ft_free_stack(stack_a);
 				ft_error();
 			}
-			// if (!ft_duplicate_error(stack_a, ft_atoi(av[i])))
-			// {
-			// 	ft_free_stack(stack_a);
-			// }
 			j = ft_atol(av[i]);
 			ft_add_new_node(&stack_a, j);
 			i++;

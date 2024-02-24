@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:06:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/23 16:45:40 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:29:51 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ void	routing(t_stack **stack_a, t_stack **stack_b)
 	else if (len > 3 && len <= 5)
 		sort_small(stack_a, stack_b, len);
 	else
-		// 	sort_big(stack_a, stack_b, len);
 		radix_sort(stack_a, stack_b);
-	// map_values(stack_a);
 }
 
 int	main(int ac, char **av)

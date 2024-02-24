@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:25:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/23 13:52:52 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:28:28 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	ft_add_new_node(t_stack **stack, int num)
 	else
 	{
 		last_node = ft_find_last_node(*stack);
-		// ft_free_stack(new_node);
 		last_node->next = new_node;
 		new_node->prev = last_node;
 	}
