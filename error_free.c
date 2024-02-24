@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:36:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/23 14:03:42 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:42:39 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_free_matrix(char **matrix)
 	int	i;
 
 	i = 0;
-	while (matrix[i])
+	while (matrix && matrix[i])
 	{
 		free(matrix[i]);
 		i++;
@@ -49,11 +49,11 @@ int	ft_syntax_error(char *str)
 				&& str[i] <= 57))
 		{
 			if (str[i + 1] == 43 || str[i + 1] == 45)
-				ft_error();
+				return (1);
 			i++;
 		}
 		else
-			ft_error();
+			return (1);
 	}
 	return (0);
 }
@@ -65,10 +65,7 @@ int	ft_duplicate_error(t_stack *stack, int num)
 	while (stack)
 	{
 		if (stack->value == num)
-		{
-			ft_free_stack(stack);
-			ft_error();
-		}
+			return (1);
 		stack = stack->next;
 	}
 	return (0);
@@ -84,7 +81,7 @@ int	ft_sign_error(char *str)
 		if (str[i] == '+' || str[i] == '-')
 		{
 			if ((str[i + 1] == 32 && str[i - 1] == 32) || (str[i + 1] == '\0'))
-				ft_error();
+				return (1);
 		}
 		i++;
 	}

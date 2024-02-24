@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/20 17:43:49 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:42:15 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,33 @@ t_stack	*checker_string(char **av)
 	}
 	while (tmp[i])
 	{
-		ft_sign_error(tmp[i]);
-		ft_syntax_error(tmp[i]);
-		ft_duplicate_error(stack_a, ft_atoi(tmp[i]));
+		if (ft_sign_error(tmp[i]) || ft_syntax_error(tmp[i])
+			|| ft_duplicate_error(stack_a, ft_atoi(tmp[i])))
+		{
+			ft_free_matrix(tmp);
+			ft_free_stack(stack_a);
+			ft_error();
+		}
+		// if (!ft_sign_error(tmp[i]) || !ft_syntax_error(tmp[i]))
+		// {
+		// 	ft_free_matrix(tmp);
+		// 	ft_free_stack(stack_a);
+		// 	ft_error();
+		// }
+		// else
+		// {
+		// 	j = ft_atol(tmp[i]);
+		// 	ft_add_new_node(&stack_a, j);
+		// }
 		j = ft_atol(tmp[i]);
 		ft_add_new_node(&stack_a, j);
+		// if (!ft_duplicate_error(stack_a, ft_atoi(tmp[i])))
+		// {
+		// 	ft_free_matrix(tmp);
+		// 	ft_error();
+		// }
+		// j = ft_atol(tmp[i]);
+		// ft_add_new_node(&stack_a, j);
 		i++;
 	}
 	ft_free_matrix(tmp);
@@ -92,9 +114,9 @@ int	ft_is_valid(int ac, char **av)
 		ac--;
 	}
 	if (string_count > 1)
-		ft_error();
+		return (1);
 	else if (string_count == 1 && int_count > 0)
-		ft_error();
+		return (1);
 	return (0);
 }
 
@@ -115,10 +137,17 @@ t_stack	*checker_input(int ac, char **av)
 	{
 		while (i < ac)
 		{
-			ft_is_valid(ac, av);
-			ft_sign_error(av[i]);
-			ft_syntax_error(av[i]);
-			ft_duplicate_error(stack_a, ft_atoi(av[i]));
+			if (ft_is_valid(ac, av) || ft_sign_error(av[i])
+				|| ft_syntax_error(av[i]) || ft_duplicate_error(stack_a,
+					ft_atoi(av[i])))
+			{
+				ft_free_stack(stack_a);
+				ft_error();
+			}
+			// if (!ft_duplicate_error(stack_a, ft_atoi(av[i])))
+			// {
+			// 	ft_free_stack(stack_a);
+			// }
 			j = ft_atol(av[i]);
 			ft_add_new_node(&stack_a, j);
 			i++;
