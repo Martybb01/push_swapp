@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/24 18:28:05 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:36:43 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ void				quick_sort(int *array, int low, int high);
 void				map_values(t_stack **stack_a);
 
 void				radix_sort(t_stack **stack_a, t_stack **stack_b);
-void				mergeSort(int arr[], int l, int r);
 
 // -------------------------------
 

@@ -8,7 +8,8 @@ SRC_DIR     = src
 OBJ_DIR     = .dir
 
 SRCS := main.c \
-error_free.c \
+free.c \
+check_errors.c \
 stack_init.c \
 stack_utils.c \
 parsing.c \
