@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/23 18:52:22 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:30:09 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,4 +170,21 @@ int	is_on_top(t_stack *stack, t_stack *stack_ptr, int x, int len)
 		distance++;
 	}
 	return (distance < len / 2); // Element is not on top of the stack
+}
+
+int	is_closer_to_top_or_bottom(t_stack *stack, int stack_value, int len)
+{
+	int		distance;
+	t_stack	*temp;
+
+	distance = 0;
+	temp = stack;
+	while (temp != NULL)
+	{
+		if (temp->value == stack_value)
+			break ;
+		temp = temp->next;
+		distance++;
+	}
+	return (distance < len / 2);
 }
