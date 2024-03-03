@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/03 18:45:49 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/03 20:22:05 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,16 @@
 typedef struct s_stack
 {
 	int				value;
-	int				pivot;
 	int				curr_pos;
 	int				final_idx;
-	bool			cheapest;
-	bool			above_mid;
 	struct s_stack	*next;
 	struct s_stack	*prev;
+	int				ra;
+	int				rb;
+	int				rra;
+	int				rrb;
+	int				sa;
+	int				sb;
 }					t_stack;
 
 // ------------ UTILS ------------

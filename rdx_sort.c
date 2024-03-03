@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 16:58:17 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/27 18:25:08 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/03 20:20:48 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,33 @@
 // 	msd_radix_recursive(stack_a, stack_b, max_bits - 1, max_bits);
 // }
 
+bool	is_small_subset(int len)
+{
+	return (len <= 20);
+}
+
+void	insertion_sort(t_stack **stack_a)
+{
+	t_stack	*key_node;
+	t_stack	*compare_node;
+	int		key_value;
+
+	key_node = (*stack_a)->next;
+	while (key_node != NULL)
+	{
+		key_value = key_node->value;
+		compare_node = key_node;
+		while (compare_node->prev != NULL
+			&& compare_node->prev->value > key_value)
+		{
+			compare_node->value = compare_node->prev->value;
+			compare_node = compare_node->prev;
+		}
+		compare_node->value = key_value;
+		key_node = key_node->next;
+	}
+}
+
 void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	len;
@@ -90,12 +117,15 @@ void	radix_sort(t_stack **stack_a, t_stack **stack_b)
 			}
 			j++;
 		}
+		// if (is_small_subset(len))
+		// {
+		// 	insertion_sort(stack_a);
+		// }
 		while (count_pa > 0)
 		{
 			node_push(stack_b, stack_a, "pa");
 			count_pa--;
 		}
 		i++;
-		ft_printf("i: %d\n", i);
 	}
 }
