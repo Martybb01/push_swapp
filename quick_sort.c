@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:38:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/24 18:27:48 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/03 19:05:16 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,43 @@ void	quick_sort(int *array, int low, int high)
 	}
 }
 
+void	fill_array_with_stack(t_stack **stack, int *array, int len)
+{
+	t_stack	*current;
+	int		i;
+
+	i = 0;
+	current = *stack;
+	while (i < len)
+	{
+		array[i] = current->value;
+		current = current->next;
+		i++;
+	}
+}
+
+void	update_stack_values(t_stack **stack, int *array, int len)
+{
+	t_stack	*current;
+	int		i;
+
+	current = *stack;
+	while (current != NULL)
+	{
+		i = 0;
+		while (i < len)
+		{
+			if (current->value == array[i])
+			{
+				current->value = i;
+				break ;
+			}
+			i++;
+		}
+		current = current->next;
+	}
+}
+
 void	map_values(t_stack **stack_a)
 {
 	int		len;
@@ -57,29 +94,8 @@ void	map_values(t_stack **stack_a)
 	temp_array = malloc(sizeof(int) * len);
 	if (!temp_array)
 		ft_error();
-	i = 0;
-	current = *stack_a;
-	while (i < len)
-	{
-		temp_array[i] = current->value;
-		current = current->next;
-		i++;
-	}
+	fill_array_with_stack(stack_a, temp_array, len);
 	quick_sort(temp_array, 0, len - 1);
-	current = *stack_a;
-	while (current != NULL)
-	{
-		i = 0;
-		while (i < len)
-		{
-			if (current->value == temp_array[i])
-			{
-				current->value = i;
-				break ;
-			}
-			i++;
-		}
-		current = current->next;
-	}
+	update_stack_values(stack_a, temp_array, len);
 	free(temp_array);
 }

@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:36:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/26 18:32:47 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/03 15:37:56 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,13 @@ void	ft_free_matrix(char **matrix)
 		i++;
 	}
 	free(matrix);
+}
+
+void	mega_free(t_stack *stack_a, char **str)
+{
+	if (stack_a)
+		ft_free_stack(stack_a);
+	if (str)
+		ft_free_matrix(str);
+	ft_error();
 }

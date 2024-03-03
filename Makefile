@@ -20,6 +20,7 @@ push_op.c \
 sort_small.c \
 quick_sort.c \
 rdx_sort.c \
+sort_three.c \
 
 OBJS := $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/27 16:25:46 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/03 18:45:49 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_stack
 
 void				ft_free_stack(t_stack *stack);
 void				ft_free_matrix(char **matrix);
+void				mega_free(t_stack *stack_a, char **str);
 int					ft_syntax_error(char *str);
 int					ft_duplicate_error(t_stack *stack, int num);
 int					ft_sign_error(char *str);
@@ -67,6 +68,8 @@ int					check_if_sorted(t_stack *stack_a);
 
 void				nodes_swap(t_stack *stack, char *str);
 void				nodes_double_swap(t_stack *stack_a, t_stack *stack_b);
+void				swap_and_rotate(t_stack **stack);
+void				swap_and_reverse_rotate(t_stack **stack);
 
 void				nodes_rotate(t_stack **stack, char *str);
 void				nodes_double_rotate(t_stack **stack_a, t_stack **stack_b);

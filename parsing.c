@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/24 18:29:28 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/03 15:43:58 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,12 @@ t_stack	*checker_string(char **av)
 	i = 0;
 	tmp = ft_split(av[1], 32);
 	if (!tmp)
-	{
-		ft_free_matrix(tmp);
-		ft_error();
-	}
+		mega_free(NULL, tmp);
 	while (tmp[i])
 	{
 		if (ft_sign_error(tmp[i]) || ft_syntax_error(tmp[i])
 			|| ft_duplicate_error(stack_a, ft_atoi(tmp[i])))
-		{
-			ft_free_matrix(tmp);
-			ft_free_stack(stack_a);
-			ft_error();
-		}
+			mega_free(stack_a, tmp);
 		j = ft_atol(tmp[i]);
 		ft_add_new_node(&stack_a, j);
 		i++;
@@ -122,10 +115,7 @@ t_stack	*checker_input(int ac, char **av)
 			if (ft_is_valid(ac, av) || ft_sign_error(av[i])
 				|| ft_syntax_error(av[i]) || ft_duplicate_error(stack_a,
 					ft_atoi(av[i])))
-			{
-				ft_free_stack(stack_a);
-				ft_error();
-			}
+				mega_free(stack_a, NULL);
 			j = ft_atol(av[i]);
 			ft_add_new_node(&stack_a, j);
 			i++;
