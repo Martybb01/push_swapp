@@ -21,6 +21,7 @@ sort_small.c \
 quick_sort.c \
 rdx_sort.c \
 sort_three.c \
+sorting_algo.c \
 
 OBJS := $(SRCS:.c=.o)
 

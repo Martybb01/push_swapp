@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:06:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/03 20:02:30 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/03 21:54:26 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	routing(t_stack **stack_a, t_stack **stack_b)
 	else if (len > 3 && len <= 5)
 		sort_small(stack_a, stack_b, len);
 	else
-		radix_sort(stack_a, stack_b);
+		// radix_sort(stack_a, stack_b);
+		my_algo_sort(stack_a, stack_b);
 }
 
 int	main(int ac, char **av)
@@ -51,7 +52,7 @@ int	main(int ac, char **av)
 	else
 		routing(&temp_a, &temp_b);
 	print_stack(temp_a, "stack_a");
-	// print_stack(temp_b, "stack_b");
+	print_stack(temp_b, "stack_b");
 	ft_free_stack(temp_a);
 	ft_free_stack(temp_b);
 	return (0);

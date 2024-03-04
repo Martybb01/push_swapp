@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/03 20:22:05 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/03 21:45:16 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void				map_values(t_stack **stack_a);
 void				radix_sort(t_stack **stack_a, t_stack **stack_b);
 int					is_closer_to_top_or_bottom(t_stack *stack, int stack_value,
 						int len);
+void				my_algo_sort(t_stack **stack_a, t_stack **stack_b);
 
 // -------------------------------
 
