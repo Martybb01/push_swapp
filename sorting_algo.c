@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:24:56 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/05 01:21:58 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/05 18:11:38 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,17 @@ int	min(int a, int b)
 int	calculate_moves(t_stack **stack_b, int stackA_size, int stackB_size)
 {
 	t_stack	*temp;
-	int		total_moves;
 	int		index;
+	int		total_moves;
+	int		move_1;
+	int		move_2;
 
 	temp = *stack_b;
+	total_moves = 0;
 	while (temp)
 	{
 		index = temp->final_idx;
+		ft_printf("index: %d\n", index);
 		if (index < stackA_size / 2)
 		{
 			temp->ra = index;
@@ -62,20 +66,23 @@ int	calculate_moves(t_stack **stack_b, int stackA_size, int stackB_size)
 			temp->ra = stackA_size - index;
 			temp->rra = index;
 		}
-		if (temp->curr_pos < stackB_size / 2)
+		ft_printf("curr_pos: %d\n", temp->value);
+		if (temp->value < stackB_size / 2)
 		{
-			temp->rb = temp->curr_pos;
-			temp->rrb = stackB_size - temp->curr_pos;
+			temp->rb = temp->value;
+			temp->rrb = stackB_size - temp->value;
 		}
 		else
 		{
-			temp->rb = stackB_size - temp->curr_pos;
-			temp->rrb = temp->curr_pos;
+			temp->rb = stackB_size - temp->value;
+			temp->rrb = temp->value;
 		}
+		// ft_printf("next value: %d\n", temp->next->value);
+		move_1 = temp->ra + temp->rb;
+		move_2 = temp->rra + temp->rrb;
+		total_moves += min(move_1, move_2);
 		temp = temp->next;
 	}
-	total_moves = min(temp->ra + temp->rb, temp->rra + temp->rrb);
-	ft_printf("ciaone\n");
 	return (total_moves);
 }
 
@@ -93,15 +100,16 @@ void	my_algo_sort(t_stack **stack_a, t_stack **stack_b)
 	}
 	stackb_size = ft_stack_size(*stack_b);
 	ft_printf("stackb_size: %d\n", stackb_size);
-	total_moves = calculate_moves(stack_b, ft_stack_size(*stack_a),
-			stackb_size);
-	ft_printf("total moves: %d\n", total_moves);
+	// map_values(stack_b);
 	// ft_printf("Best node: %d\n", best_node->value);
-	// while (*stack_b != NULL)
-	// {
-	// 	calculate_moves(stack_b, ft_stack_size(*stack_a), stackb_size);
-	// 	// best_node = find_best_node(stack_b, stackb_size);
-	// 	// ft_printf("Best node: %d\n", best_node->value);
-	// 	// moves_best_node(stack_a, stack_b, best_node);
-	// }
+	while (*stack_b != NULL)
+	{
+		total_moves = calculate_moves(stack_b, ft_stack_size(*stack_a),
+				stackb_size);
+		ft_printf("total moves: %d\n", total_moves);
+		node_push(stack_b, stack_a, "pa");
+		// best_node = find_best_node(stack_b, stackb_size);
+		// ft_printf("Best node: %d\n", best_node->value);
+		// moves_best_node(stack_a, stack_b, best_node);
+	}
 }
