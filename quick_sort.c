@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:38:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/03 20:21:01 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/06 21:46:51 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ void	update_stack_values(t_stack **stack, int *array, int len)
 			if (current->value == array[i])
 			{
 				current->value = i;
-				(*stack)->final_idx = i;
-				ft_printf("fianl_idx: %d\n", (*stack)->final_idx);
+				// (*stack)->final_idx = i;
+				// ft_printf("fianl_idx: %d\n", (*stack)->final_idx);
 				break ;
 			}
 			i++;

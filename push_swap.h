@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/03 21:45:16 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/06 21:33:47 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 typedef struct s_stack
 {
 	int				value;
-	int				curr_pos;
 	int				final_idx;
+	int				curr_pos;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 	int				ra;

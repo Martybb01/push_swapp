@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/03 20:24:56 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/06 12:17:14 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/06 21:46:01 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,18 +85,48 @@ int	calculate_moves(t_stack **stack_b, int stackA_size, int stackB_size)
 	}
 	return (total_moves);
 }
+int	moves_to_top(t_stack **stack, int stack_size, int target)
+{
+	t_stack	*temp;
+	int		position;
+	int		moves_up;
+	int		moves_down;
+
+	temp = *stack;
+	position = -1;
+	// map_values(stack);
+	while (temp)
+	{
+		ft_printf("temp->value: %d, Final index: %d\n", temp->value,
+			temp->final_idx);
+		if (temp->final_idx == target)
+		{
+			ft_printf("target: %d\n", target);
+			ft_printf("temp->final_idx: %d\n", temp->final_idx);
+			position = temp->final_idx;
+			break ;
+		}
+		temp = temp->next;
+	}
+	if (position == -1)
+		return (-1);
+	moves_up = position;
+	moves_down = stack_size - position - 1;
+	return ((moves_up < moves_down) ? moves_up : moves_down);
+}
 
 void	my_algo_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	stackb_size;
-	int	total_moves;
 	int	moves_to_top_b;
-	int	moves_to_top_a;
-	int	target_pos;
 
+	// int	total_moves;
+	// int	moves_to_top_a;
+	// int	target_pos;
 	// t_stack	*best_node;
 	// int		index;
-	map_values(stack_a);
+	// map_values(stack_a);
+	printf("my_algo_sort\n");
 	while (*stack_a != NULL)
 		node_push(stack_a, stack_b, "pb");
 	stackb_size = ft_stack_size(*stack_b);
@@ -105,14 +135,15 @@ void	my_algo_sort(t_stack **stack_a, t_stack **stack_b)
 	while (*stack_b != NULL)
 	{
 		moves_to_top_b = moves_to_top(stack_b, stackb_size, (*stack_b)->value);
-		target_pos = find_target_pos(stack_a, (*stack_b)->value);
-		moves_to_top_a = moves_to_top(stack_a, ft_stack_size(*stack_a),
-				target_pos);
-		total_moves = optimize_moves(moves_to_top_a, moves_to_top_b);
+		ft_printf("moves_to_top_b: %d\n", moves_to_top_b);
+		// target_pos = find_target_pos(stack_a, (*stack_b)->value);
+		// moves_to_top_a = moves_to_top(stack_a, ft_stack_size(*stack_a),
+		// 		target_pos);
+		// total_moves = optimize_moves(moves_to_top_a, moves_to_top_b);
 		// total_moves = calculate_moves(stack_b, ft_stack_size(*stack_a),
 		// 		stackb_size);
 		// ft_printf("total moves: %d\n", total_moves);
-		// node_push(stack_b, stack_a, "pa");
+		node_push(stack_b, stack_a, "pa");
 		// best_node = find_best_node(stack_b, stackb_size);
 		// ft_printf("Best node: %d\n", best_node->value);
 		// moves_best_node(stack_a, stack_b, best_node);
