@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/06 21:33:47 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/13 21:29:06 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <sys/types.h>
 # include <unistd.h>
 
+typedef struct s_move
+{
+	int				idx_a;
+	int				idx_b;
+	int				tot_moves;
+}					t_move;
 typedef struct s_stack
 {
 	int				value;
@@ -44,6 +50,8 @@ int					ft_syntax_error(char *str);
 int					ft_duplicate_error(t_stack *stack, int num);
 int					ft_sign_error(char *str);
 void				ft_error(void);
+int					ft_min(int a, int b);
+int					ft_max(int a, int b);
 
 // -------------------------------
 
@@ -55,8 +63,8 @@ void				print_stack(t_stack *stackm, char *str);
 t_stack				*ft_stacklast(t_stack *lst);
 int					ft_stack_size(t_stack *stack);
 int					stack_max_value(t_stack *stack);
-t_stack				*stack_min_value(t_stack *stack);
-t_stack				*stack_top_value(t_stack *stack);
+int					stack_min_value(t_stack *stack);
+int					check_index(t_stack *stack, int value);
 
 // -------------------------------
 
@@ -91,17 +99,14 @@ void				node_push(t_stack **stack_src, t_stack **stack_dst,
 void				routing(t_stack **stack_a, t_stack **stack_b);
 void				sort_three(t_stack **stack_a);
 void				sort_small(t_stack **stack_a, t_stack **stack_b, int len);
-
 int					is_closer_to_top(t_stack *stack, int x, int len);
-int					is_on_top(t_stack *stack, t_stack *stack_ptr, int x,
-						int len);
+
 void				quick_sort(int *array, int low, int high);
 void				map_values(t_stack **stack_a);
 
 void				radix_sort(t_stack **stack_a, t_stack **stack_b);
-int					is_closer_to_top_or_bottom(t_stack *stack, int stack_value,
-						int len);
 void				my_algo_sort(t_stack **stack_a, t_stack **stack_b);
+void				sort_big(t_stack **stack_a, t_stack **stack_b);
 
 // -------------------------------
 
