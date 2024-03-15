@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:03:18 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/13 22:42:13 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:44:06 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,12 @@ int	find_index_place(t_stack *stack, int num, char c)
 
 	index = 0;
 	last_node = ft_find_last_node(stack);
-	ft_printf("last node: %d\n", last_node->value);
+	ft_printf("pippo\n");
+	// ft_printf("last node: %d\n", last_node->value);
 	if (c == 'a')
 	{
 		ft_printf("num: %d\n", num);
-		ft_printf("stack value: %d\n", stack->value);
+		// ft_printf("stack value: %d\n", stack->value);
 		if (num < stack->value && num > last_node->value)
 		{
 			ft_printf("Lol\n");
@@ -119,8 +120,8 @@ int	find_index_place(t_stack *stack, int num, char c)
 	else if (c == 'b')
 	{
 		ft_printf("num: %d\n", num);
-		ft_printf("stack value: %d\n", stack->value);
-		ft_printf("last node: %d\n", last_node->value);
+		// ft_printf("stack value: %d\n", stack->value);
+		// ft_printf("last node: %d\n", last_node->value);
 		if (num > stack->value && num < ft_find_last_node(stack)->value)
 		{
 			ft_printf("Lol\n");
@@ -202,14 +203,17 @@ void	sort_big(t_stack **stack_a, t_stack **stack_b)
 	int	index;
 	int	place_in_b;
 
-	// map_values(stack_a);
+	map_values(stack_a);
 	// sort_stack_b_from_a(stack_a, stack_b);
-	ft_printf("stackk value: %d\n", (*stack_a)->value);
+	// ft_printf("stackk value: %d\n", (*stack_a)->value);
 	index = check_index(*stack_a, stack_min_value(*stack_a));
+	ft_printf("min value: %d\n", stack_min_value(*stack_a));
 	ft_printf("index: %d\n", index);
+	node_push(stack_a, stack_b, "pb");
+	node_push(stack_a, stack_b, "pb");
 	place_in_b = find_index_place(*stack_b, (*stack_a)->value, 'b');
 	ft_printf("place: %d\n", place_in_b);
-	sort_stack_b_from_a(stack_a, stack_b);
+	// sort_stack_b_from_a(stack_a, stack_b);
 	if (index < ft_stack_size(*stack_a) - index)
 	{
 		while (index > 0)

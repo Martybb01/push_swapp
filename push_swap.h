@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/13 21:29:06 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:43:57 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ typedef struct s_stack
 	int				curr_pos;
 	struct s_stack	*next;
 	struct s_stack	*prev;
-	int				ra;
-	int				rb;
-	int				rra;
-	int				rrb;
-	int				sa;
-	int				sb;
 }					t_stack;
 
 // ------------ UTILS ------------
