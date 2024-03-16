@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 23:03:18 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/15 18:44:06 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/15 23:48:14 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,18 +202,21 @@ void	sort_big(t_stack **stack_a, t_stack **stack_b)
 {
 	int	index;
 	int	place_in_b;
+	int	smallest;
 
 	map_values(stack_a);
 	// sort_stack_b_from_a(stack_a, stack_b);
 	// ft_printf("stackk value: %d\n", (*stack_a)->value);
+	node_push(stack_a, stack_b, "pb");
+	node_push(stack_a, stack_b, "pb");
 	index = check_index(*stack_a, stack_min_value(*stack_a));
 	ft_printf("min value: %d\n", stack_min_value(*stack_a));
 	ft_printf("index: %d\n", index);
-	node_push(stack_a, stack_b, "pb");
-	node_push(stack_a, stack_b, "pb");
 	place_in_b = find_index_place(*stack_b, (*stack_a)->value, 'b');
 	ft_printf("place: %d\n", place_in_b);
 	// sort_stack_b_from_a(stack_a, stack_b);
+	smallest = stack_min_value(*stack_a);
+	ft_printf("smallest: %d\n", smallest);
 	if (index < ft_stack_size(*stack_a) - index)
 	{
 		while (index > 0)
