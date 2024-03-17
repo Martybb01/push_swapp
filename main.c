@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:06:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/09 16:27:18 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/17 00:20:02 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	routing(t_stack **stack_a, t_stack **stack_b)
 	{
 		// radix_sort(stack_a, stack_b);
 		// my_algo_sort(stack_a, stack_b);
-		sort_big(stack_a, stack_b);
+		// sort_big(stack_a, stack_b);
+		big_sort(stack_a, stack_b);
 	}
 }
 

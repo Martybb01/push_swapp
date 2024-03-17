@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/13 21:24:46 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/17 00:32:06 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ t_stack	*ft_stacklast(t_stack *lst)
 	return (lst);
 }
 
+t_stack	*ft_find_min_node(t_stack **head)
+{
+	t_stack	*min;
+	t_stack	*current;
+
+	min = *head;
+	current = *head;
+	while (current != NULL)
+	{
+		if (current->value < min->value)
+			min = current;
+		current = current->next;
+	}
+	return (min);
+}
 int	stack_max_value(t_stack *stack)
 {
 	int	max;

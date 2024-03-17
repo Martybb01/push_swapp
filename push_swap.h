@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/15 18:43:57 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/17 00:48:34 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_stack
 {
 	int				value;
 	int				final_idx;
-	int				curr_pos;
+	int				is_half_up;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
@@ -58,6 +58,7 @@ t_stack				*ft_stacklast(t_stack *lst);
 int					ft_stack_size(t_stack *stack);
 int					stack_max_value(t_stack *stack);
 int					stack_min_value(t_stack *stack);
+t_stack				*ft_find_min_node(t_stack **head);
 int					check_index(t_stack *stack, int value);
 
 // -------------------------------
@@ -101,6 +102,7 @@ void				map_values(t_stack **stack_a);
 void				radix_sort(t_stack **stack_a, t_stack **stack_b);
 void				my_algo_sort(t_stack **stack_a, t_stack **stack_b);
 void				sort_big(t_stack **stack_a, t_stack **stack_b);
+void				big_sort(t_stack **stack_a, t_stack **stack_b);
 
 // -------------------------------
 
