@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:06:48 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 15:05:23 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:22:53 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,9 +200,10 @@ void	prepare_stack(t_stack *stack_a, t_stack *stack_b)
 
 void	big_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	int		stack_a_size;
-	t_stack	*smallest;
+	int	stack_a_size;
+	int	index;
 
+	// t_stack	*smallest;
 	map_values(stack_a);
 	stack_a_size = ft_stack_size(*stack_a);
 	// ft_printf("stack_sizeAA: %d\n", ft_stack_size(*stack_a));
@@ -218,17 +219,34 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 		move(stack_a, stack_b);
 	}
 	assign_index(*stack_a);
-	smallest = ft_find_min_node(stack_a);
+	// smallest = ft_find_min_node(stack_a);
+	index = check_index(*stack_a, stack_min_value(*stack_a));
 	// ft_printf("smallest: %d\n", smallest->value);
 	// ft_printf("is half up: %d\n", smallest->is_half_up);
-	if (smallest->is_half_up == 1)
+	// if (smallest->is_half_up == 1)
+	// {
+	// 	while (*stack_a != smallest)
+	// 		nodes_rotate(stack_a, "ra");
+	// }
+	// else
+	// {
+	// 	while (*stack_a != smallest)
+	// 		nodes_reverse_rotate(stack_a, "rra");
+	// }
+	if (index < ft_stack_size(*stack_a) - index)
 	{
-		while (*stack_a != smallest)
+		while (index > 0)
+		{
 			nodes_rotate(stack_a, "ra");
+			index--;
+		}
 	}
 	else
 	{
-		while (*stack_a != smallest)
+		while (index < ft_stack_size(*stack_a))
+		{
 			nodes_reverse_rotate(stack_a, "rra");
+			index++;
+		}
 	}
 }

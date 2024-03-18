@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 15:04:22 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:02:29 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int	check_index(t_stack *stack, int value)
 		index++;
 		stack = stack->next;
 	}
-	stack->final_idx = 0;
+	// stack->final_idx = 0;
 	return (index);
 }
 
