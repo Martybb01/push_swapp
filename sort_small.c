@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:24 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 12:39:35 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:33:19 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,32 @@ void	sort_five(t_stack **stack_a, t_stack **stack_b, int smallest,
 		node_push(stack_b, stack_a, "pa");
 }
 
+void	sorting_five(t_stack **stack_a, t_stack **stack_b)
+{
+	int		smallest;
+	int		smallest_2nd;
+	t_stack	*temp;
+
+	smallest = stack_min_value(*stack_a);
+	ft_printf("smallest: %d\n", smallest);
+	smallest_2nd = stack_min_value(*stack_a);
+	ft_printf("smallest_2nd: %d\n", smallest_2nd);
+	temp = *stack_a;
+	while (temp->value == smallest_2nd)
+	{
+		smallest_2nd = stack_min_value(temp->next);
+		temp = temp->next;
+	}
+	*stack_a = temp;
+	// while (smallest_2nd == smallest)
+	// {
+	// 	smallest_2nd = stack_min_value((*stack_a)->next);
+	// 	ft_printf("smallest_2nd: %d\n", smallest_2nd);
+	// 	(*stack_a) = (*stack_a)->next;
+	// }
+	sort_five(stack_a, stack_b, smallest, smallest_2nd);
+}
+
 void	sort_small(t_stack **stack_a, t_stack **stack_b, int len)
 {
 	int	*array;
@@ -114,6 +140,7 @@ void	sort_small(t_stack **stack_a, t_stack **stack_b, int len)
 	if (len == 4)
 		sort_four(stack_a, stack_b, smallest);
 	else
+		// sorting_five(stack_a, stack_b);
 		sort_five(stack_a, stack_b, smallest, smallest_2nd);
 	free(array);
 }

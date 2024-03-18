@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:25:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 12:54:43 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:21:14 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_add_new_node(t_stack **stack, int num)
 
 	if (!stack)
 		return ;
-	new_node = (t_stack *)malloc(sizeof(t_stack));
+	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
 	{
 		ft_free_stack(new_node);
