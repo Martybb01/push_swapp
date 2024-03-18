@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 17:29:53 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/03 18:45:32 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:52:17 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	nodes_swap(t_stack *stack, char *str)
 {
 	int	temp;
 
+	if (!stack || !stack->next)
+		return ;
 	temp = stack->value;
 	stack->value = stack->next->value;
 	stack->next->value = temp;

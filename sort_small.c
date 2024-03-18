@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:24 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/03 18:54:00 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:39:35 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	sort_small(t_stack **stack_a, t_stack **stack_b, int len)
 	int	smallest;
 	int	smallest_2nd;
 
+	// ft_printf("ODIO\n");
 	array = init_array_from_stack(stack_a, len);
 	ft_sort_array(array, len);
 	smallest = array[0];

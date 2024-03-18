@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/17 00:48:34 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:47:21 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,20 @@
 # include <sys/types.h>
 # include <unistd.h>
 
-typedef struct s_move
-{
-	int				idx_a;
-	int				idx_b;
-	int				tot_moves;
-}					t_move;
+// typedef struct s_move
+// {
+// 	int				idx_a;
+// 	int				idx_b;
+// 	int				tot_moves;
+// }					t_move;
 typedef struct s_stack
 {
 	int				value;
 	int				final_idx;
 	int				is_half_up;
+	int				push_to_b_price;
+	int				cheapest_node;
+	struct s_stack	*best_node;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
@@ -79,10 +82,14 @@ void				swap_and_reverse_rotate(t_stack **stack);
 
 void				nodes_rotate(t_stack **stack, char *str);
 void				nodes_double_rotate(t_stack **stack_a, t_stack **stack_b);
+void				stack_rotate_togheter(t_stack **stack_a, t_stack **stack_b,
+						t_stack *cheapest_node);
 
 void				nodes_reverse_rotate(t_stack **stack, char *str);
 void				nodes_double_reverse_rotate(t_stack **stack_a,
 						t_stack **stack_b);
+void				stack_rev_rotate_togheter(t_stack **stack_a,
+						t_stack **stack_b, t_stack *cheapest_node);
 
 void				node_push(t_stack **stack_src, t_stack **stack_dst,
 						char *str);
@@ -103,6 +110,8 @@ void				radix_sort(t_stack **stack_a, t_stack **stack_b);
 void				my_algo_sort(t_stack **stack_a, t_stack **stack_b);
 void				sort_big(t_stack **stack_a, t_stack **stack_b);
 void				big_sort(t_stack **stack_a, t_stack **stack_b);
+
+void				assign_index(t_stack *stack);
 
 // -------------------------------
 

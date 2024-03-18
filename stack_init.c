@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:25:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/24 18:28:28 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/18 12:54:43 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,18 @@ t_stack	*ft_find_last_node(t_stack *head)
 	return (head);
 }
 
+void	init_values(t_stack *node)
+{
+	node->best_node = NULL;
+	node->next = NULL;
+	node->prev = NULL;
+	node->value = 0;
+	node->final_idx = 0;
+	node->is_half_up = 0;
+	node->cheapest_node = 0;
+	node->push_to_b_price = 0;
+}
+
 void	ft_add_new_node(t_stack **stack, int num)
 {
 	t_stack	*new_node;
@@ -28,14 +40,15 @@ void	ft_add_new_node(t_stack **stack, int num)
 
 	if (!stack)
 		return ;
-	new_node = malloc(sizeof(t_stack));
+	new_node = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_node)
 	{
 		ft_free_stack(new_node);
 		return ;
 	}
+	init_values(new_node);
 	new_node->value = num;
-	new_node->next = NULL;
+	// new_node->next = NULL;
 	if (!*stack)
 		*stack = new_node;
 	else
