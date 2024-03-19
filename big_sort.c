@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:06:48 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 15:22:53 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/18 23:01:10 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	set_cheapest_push(t_stack *stack_b)
 	best_matching_idx = INT_MAX;
 	while (stack_b)
 	{
-		if (stack_b->push_to_b_price < best_matching_idx)
+		if (stack_b->push_to_b_price <= best_matching_idx)
 		{
 			best_matching_idx = stack_b->push_to_b_price;
 			best_matching_node = stack_b;
@@ -148,18 +148,12 @@ void	post_rotation(t_stack **stack, t_stack *cheapest_node, char stack_name)
 		rotate_op = "rb";
 		rev_rotate_op = "rrb";
 	}
-	if (*stack != cheapest_node)
+	while (*stack != cheapest_node)
 	{
 		if (cheapest_node->is_half_up == 1)
-		{
-			while (*stack != cheapest_node)
-				nodes_rotate(stack, rotate_op);
-		}
+			nodes_rotate(stack, rotate_op);
 		else
-		{
-			while (*stack != cheapest_node)
-				nodes_reverse_rotate(stack, rev_rotate_op);
-		}
+			nodes_reverse_rotate(stack, rev_rotate_op);
 	}
 }
 
@@ -183,8 +177,8 @@ void	move(t_stack **stack_a, t_stack **stack_b)
 		stack_rev_rotate_togheter(stack_a, stack_b, cheapest_node);
 	}
 	// ft_printf("post_rotation\n");
-	post_rotation(stack_b, cheapest_node, 'b');
 	post_rotation(stack_a, cheapest_node->best_node, 'a');
+	post_rotation(stack_b, cheapest_node, 'b');
 	node_push(stack_b, stack_a, "pa");
 }
 
@@ -203,37 +197,18 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 	int	stack_a_size;
 	int	index;
 
-	// t_stack	*smallest;
 	map_values(stack_a);
 	stack_a_size = ft_stack_size(*stack_a);
-	// ft_printf("stack_sizeAA: %d\n", ft_stack_size(*stack_a));
 	while (stack_a_size-- > 3)
 		node_push(stack_a, stack_b, "pb");
-	// ft_printf("stack_sizeBB: %d\n", ft_stack_size(*stack_b));
 	sort_three(stack_a);
-	// ft_printf("sort three\n");
 	while (*stack_b)
 	{
 		prepare_stack(*stack_a, *stack_b);
-		// ft_printf("Round 1\n");
 		move(stack_a, stack_b);
 	}
-	assign_index(*stack_a);
-	// smallest = ft_find_min_node(stack_a);
 	index = check_index(*stack_a, stack_min_value(*stack_a));
-	// ft_printf("smallest: %d\n", smallest->value);
-	// ft_printf("is half up: %d\n", smallest->is_half_up);
-	// if (smallest->is_half_up == 1)
-	// {
-	// 	while (*stack_a != smallest)
-	// 		nodes_rotate(stack_a, "ra");
-	// }
-	// else
-	// {
-	// 	while (*stack_a != smallest)
-	// 		nodes_reverse_rotate(stack_a, "rra");
-	// }
-	if (index < ft_stack_size(*stack_a) - index)
+	if (index <= ft_stack_size(*stack_a) - index)
 	{
 		while (index > 0)
 		{
@@ -243,7 +218,7 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 	}
 	else
 	{
-		while (index < ft_stack_size(*stack_a))
+		while (index <= ft_stack_size(*stack_a))
 		{
 			nodes_reverse_rotate(stack_a, "rra");
 			index++;
