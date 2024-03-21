@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:06:48 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/21 16:54:39 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:28:43 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void	post_rotation(t_stack **stack, t_stack *cheapest_node, char stack_name)
 	{
 		if (cheapest_node->is_half_up == 1)
 			nodes_rotate(stack, rotate_op);
-		else
+		else if (cheapest_node->is_half_up == 0)
 			nodes_reverse_rotate(stack, rev_rotate_op);
 	}
 }
@@ -224,6 +224,6 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 			index++;
 		}
 	}
-	if (check_if_sorted(*stack_a) == 0)
+	if (!check_if_sorted(*stack_a))
 		post_optimization(stack_a, stack_b);
 }
