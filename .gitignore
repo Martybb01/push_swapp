@@ -56,5 +56,4 @@ test_alpha.sh
 test_int.sh
 test_space.sh
 test.sh
-tester.py
 trace.txt
