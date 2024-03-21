@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 15:04:30 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:50:28 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@
 # include <sys/types.h>
 # include <unistd.h>
 
-// typedef struct s_move
-// {
-// 	int				idx_a;
-// 	int				idx_b;
-// 	int				tot_moves;
-// }					t_move;
+typedef struct s_sequence
+{
+	int				start_idx;
+	int				final_idx;
+}					t_sequence;
 typedef struct s_stack
 {
 	int				value;
@@ -112,6 +111,7 @@ void				sort_big(t_stack **stack_a, t_stack **stack_b);
 void				big_sort(t_stack **stack_a, t_stack **stack_b);
 
 void				assign_index(t_stack *stack);
+void				post_optimization(t_stack **stack_a, t_stack **stack_b);
 
 // -------------------------------
 

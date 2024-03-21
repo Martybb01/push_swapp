@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:06:48 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 23:01:10 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:54:39 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 		move(stack_a, stack_b);
 	}
 	index = check_index(*stack_a, stack_min_value(*stack_a));
-	if (index <= ft_stack_size(*stack_a) - index)
+	if (index < ft_stack_size(*stack_a) - index)
 	{
 		while (index > 0)
 		{
@@ -218,10 +218,12 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 	}
 	else
 	{
-		while (index <= ft_stack_size(*stack_a))
+		while (index < ft_stack_size(*stack_a))
 		{
 			nodes_reverse_rotate(stack_a, "rra");
 			index++;
 		}
 	}
+	if (check_if_sorted(*stack_a) == 0)
+		post_optimization(stack_a, stack_b);
 }
