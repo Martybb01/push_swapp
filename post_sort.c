@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:38:46 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/22 18:27:34 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:37:06 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_sequence	*find_sequence(t_stack *stack)
 	while (current)
 	{
 		// ft_printf("init_start: %d, finish_end: %d, value: %d, i: %d\n",
-		// init_start, finish_end, current->value, i);
+		// 	init_start, finish_end, current->value, i);
 		if (current->value >= init_start && current->value <= finish_end)
 		{
 			// ft_printf("start_idx: %d\n", seq->start_idx);
