@@ -59,3 +59,8 @@ test_space.sh
 test.sh
 trace.txt
 traces.txt
+
+tester.py
+push_swap_test_linux.sh
+push_swap_test.sh
+fastest.sh
