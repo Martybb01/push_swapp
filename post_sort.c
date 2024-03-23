@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:38:46 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/22 18:37:06 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/23 11:45:27 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,25 @@ t_sequence	*find_sequence(t_stack *stack)
 	seq->final_idx = -1;
 	current = stack;
 	// in_sequence = 0;
-	while (current && current->next)
+	while (current != NULL)
 	{
 		if (is_next != -1 && current->value != is_next)
 		{
-			if (seq->start_idx == -1)
-				seq->start_idx = is_next;
-			seq->final_idx = is_next;
+			seq->start_idx = is_next;
 		}
+		seq->final_idx = is_next;
 		is_next = current->value + 1;
-		// ft_printf("i: %d, value: %d\n", i, current->value);
+		ft_printf("i: %d, value: %d\n", i, current->value);
 		current = current->next;
 		i++;
 	}
 	i = 0;
 	current = stack;
+	ft_printf("starttt: %d, finallll: %d\n", seq->start_idx, seq->final_idx);
 	init_start = seq->start_idx;
-	// ft_printf("init_start: %d\n", init_start);
+	ft_printf("init_start: %d\n", init_start);
 	finish_end = seq->final_idx;
-	// ft_printf("finish_end: %d\n", finish_end);
+	ft_printf("finish_end: %d\n", finish_end);
 	count = 0;
 	missing_nums = finish_end - init_start + 1;
 	// ft_printf("missing_nums: %d\n", missing_nums);
@@ -62,7 +62,7 @@ t_sequence	*find_sequence(t_stack *stack)
 		if (current->value >= init_start && current->value <= finish_end)
 		{
 			// ft_printf("start_idx: %d\n", seq->start_idx);
-			if (seq->start_idx == init_start)
+			if (seq->start_idx != init_start)
 				seq->start_idx = i;
 			seq->final_idx = i;
 			count++;

@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:06:48 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/22 18:48:54 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/23 00:36:02 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,8 +196,8 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	stack_a_size;
 	int	index;
-	int	middle;
 
+	// int	middle;
 	map_values(stack_a);
 	stack_a_size = ft_stack_size(*stack_a);
 	while (stack_a_size-- > 3)
@@ -209,10 +209,10 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 		move(stack_a, stack_b);
 	}
 	index = check_index(*stack_a, stack_min_value(*stack_a));
-	ft_printf("stack size: %d\n", ft_stack_size(*stack_a));
-	middle = ft_stack_size(*stack_a) / 2;
-	ft_printf("middle: %d\n", middle);
-	if (index < middle)
+	// ft_printf("stack size: %d\n", ft_stack_size(*stack_a));
+	// middle = ft_stack_size(*stack_a) / 2;
+	// ft_printf("middle: %d\n", middle);
+	if (index < ft_stack_size(*stack_a) / 2)
 	{
 		while (index > 0)
 		{
