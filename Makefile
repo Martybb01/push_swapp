@@ -19,7 +19,6 @@ rev_rotate_op.c \
 push_op.c \
 sort_small.c \
 quick_sort.c \
-rdx_sort.c \
 sort_three.c \
 big_sort.c \
 

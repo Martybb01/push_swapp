@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:24 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 14:33:19 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:41:58 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,12 +117,6 @@ void	sorting_five(t_stack **stack_a, t_stack **stack_b)
 		temp = temp->next;
 	}
 	*stack_a = temp;
-	// while (smallest_2nd == smallest)
-	// {
-	// 	smallest_2nd = stack_min_value((*stack_a)->next);
-	// 	ft_printf("smallest_2nd: %d\n", smallest_2nd);
-	// 	(*stack_a) = (*stack_a)->next;
-	// }
 	sort_five(stack_a, stack_b, smallest, smallest_2nd);
 }
 
@@ -132,7 +126,6 @@ void	sort_small(t_stack **stack_a, t_stack **stack_b, int len)
 	int	smallest;
 	int	smallest_2nd;
 
-	// ft_printf("ODIO\n");
 	array = init_array_from_stack(stack_a, len);
 	ft_sort_array(array, len);
 	smallest = array[0];
@@ -140,7 +133,6 @@ void	sort_small(t_stack **stack_a, t_stack **stack_b, int len)
 	if (len == 4)
 		sort_four(stack_a, stack_b, smallest);
 	else
-		// sorting_five(stack_a, stack_b);
 		sort_five(stack_a, stack_b, smallest, smallest_2nd);
 	free(array);
 }

@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 13:25:13 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/23 22:01:48 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ static long	ft_atol(const char *str)
 		ft_error();
 	return (num);
 }
-
-// check if there is only one string: es "123" "4 5" NO
-// check if there is only one string: es "123" YES
 
 t_stack	*checker_string(char **av)
 {
