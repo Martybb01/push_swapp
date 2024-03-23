@@ -6,45 +6,11 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 19:07:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 17:02:29 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/23 23:29:23 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_min(int a, int b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-int	ft_max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
-
-void	print_stack(t_stack *stack, char *str)
-{
-	if (str)
-		ft_printf("%s:\n", str);
-	while (stack)
-	{
-		ft_printf("%d\n", stack->value);
-		stack = stack->next;
-	}
-}
-
-t_stack	*ft_stacklast(t_stack *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
 
 t_stack	*ft_find_min_node(t_stack **head)
 {
@@ -61,23 +27,7 @@ t_stack	*ft_find_min_node(t_stack **head)
 	}
 	return (min);
 }
-int	stack_max_value(t_stack *stack)
-{
-	int	max;
 
-	if (!stack)
-		return (1);
-	max = stack->value;
-	while (stack)
-	{
-		if (stack->value > max)
-			max = stack->value;
-		stack = stack->next;
-	}
-	return (max);
-}
-
-// find min value in stack
 int	stack_min_value(t_stack *stack)
 {
 	int	min;
@@ -104,8 +54,28 @@ int	check_index(t_stack *stack, int value)
 		index++;
 		stack = stack->next;
 	}
-	// stack->final_idx = 0;
 	return (index);
+}
+
+void	assign_index(t_stack *stack)
+{
+	int	i;
+	int	center;
+
+	i = 0;
+	if (!stack)
+		return ;
+	center = ft_stack_size(stack) / 2;
+	while (stack)
+	{
+		stack->final_idx = i;
+		if (i <= center)
+			stack->is_half_up = 1;
+		else
+			stack->is_half_up = 0;
+		stack = stack->next;
+		i++;
+	}
 }
 
 int	is_closer_to_top(t_stack *stack, int x, int len)
@@ -121,19 +91,4 @@ int	is_closer_to_top(t_stack *stack, int x, int len)
 		distance++;
 	}
 	return (distance < len / 2);
-}
-
-int	ft_stack_size(t_stack *stack)
-{
-	int	i;
-
-	if (!stack)
-		return (0);
-	i = 0;
-	while (stack)
-	{
-		stack = stack->next;
-		i++;
-	}
-	return (i);
 }

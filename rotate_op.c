@@ -6,11 +6,20 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 19:11:48 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 14:05:26 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/23 23:30:35 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_stack	*ft_stacklast(t_stack *lst)
+{
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
+}
 
 void	nodes_rotate(t_stack **stack, char *str)
 {
@@ -43,6 +52,5 @@ void	stack_rotate_togheter(t_stack **stack_a, t_stack **stack_b,
 	while (*stack_b != cheapest_node && *stack_a != cheapest_node->best_node)
 		nodes_double_rotate(stack_a, stack_b);
 	assign_index(*stack_a);
-	// ft_printf("ecce\n");
 	assign_index(*stack_b);
 }

@@ -6,11 +6,22 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:06:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/23 21:58:32 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/23 23:29:39 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// void	print_stack(t_stack *stack, char *str)
+// {
+// 	if (str)
+// 		ft_printf("%s:\n", str);
+// 	while (stack)
+// 	{
+// 		ft_printf("%d\n", stack->value);
+// 		stack = stack->next;
+// 	}
+// }
 
 void	routing(t_stack **stack_a, t_stack **stack_b)
 {

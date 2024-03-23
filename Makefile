@@ -12,6 +12,7 @@ free.c \
 check_errors.c \
 stack_init.c \
 stack_utils.c \
+sort_utils.c \
 parsing.c \
 swap_op.c \
 rotate_op.c \

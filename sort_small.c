@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 12:19:24 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/23 21:41:58 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/23 22:29:31 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,26 +98,6 @@ void	sort_five(t_stack **stack_a, t_stack **stack_b, int smallest,
 	}
 	while (*stack_b != NULL)
 		node_push(stack_b, stack_a, "pa");
-}
-
-void	sorting_five(t_stack **stack_a, t_stack **stack_b)
-{
-	int		smallest;
-	int		smallest_2nd;
-	t_stack	*temp;
-
-	smallest = stack_min_value(*stack_a);
-	ft_printf("smallest: %d\n", smallest);
-	smallest_2nd = stack_min_value(*stack_a);
-	ft_printf("smallest_2nd: %d\n", smallest_2nd);
-	temp = *stack_a;
-	while (temp->value == smallest_2nd)
-	{
-		smallest_2nd = stack_min_value(temp->next);
-		temp = temp->next;
-	}
-	*stack_a = temp;
-	sort_five(stack_a, stack_b, smallest, smallest_2nd);
 }
 
 void	sort_small(t_stack **stack_a, t_stack **stack_b, int len)
