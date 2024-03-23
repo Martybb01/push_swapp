@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:38:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/18 14:02:32 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:19:37 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	map_values(t_stack **stack_a)
 	int	len;
 	int	*temp_array;
 
-	// ft_printf("Mapping values...\n");
 	len = ft_stack_size(*stack_a);
 	temp_array = malloc(sizeof(int) * len);
 	if (!temp_array)

@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:06:48 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/23 14:54:42 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:24:09 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,14 @@ void	assign_index(t_stack *stack)
 	i = 0;
 	if (!stack)
 		return ;
-	// ft_printf("stack_size: %d\n", ft_stack_size(stack));
 	center = ft_stack_size(stack) / 2;
-	// ft_printf("center: %d\n", center);
-	// ft_printf("assign_index\n");
 	while (stack)
 	{
 		stack->final_idx = i;
-		// ft_printf("value: %d, index: %d\n", stack->value, stack->final_idx);
 		if (i <= center)
 			stack->is_half_up = 1;
 		else
 			stack->is_half_up = 0;
-		// ft_printf("is_half_up: %d\n", stack->is_half_up);
 		stack = stack->next;
 		i++;
 	}
@@ -59,17 +54,9 @@ void	find_best_biggest_smallest(t_stack *stack_a, t_stack *stack_b)
 			curr_a = curr_a->next;
 		}
 		if (best_match != INT_MAX)
-		{
 			stack_b->best_node = best_node;
-			// ft_printf("best_biggest_smallest: %d\n",
-			// stack_b->best_node->value);
-		}
 		else
-		{
 			stack_b->best_node = ft_find_min_node(&stack_a);
-			// ft_printf("best_biggest_smallesttt: %d\n",
-			// 	stack_b->best_node->value);
-		}
 		stack_b = stack_b->next;
 	}
 }
@@ -90,7 +77,6 @@ void	calc_push_price(t_stack *stack_a, t_stack *stack_b)
 			stack_b->push_to_b_price += size_a - stack_b->best_node->final_idx;
 		else
 			stack_b->push_to_b_price += stack_b->best_node->final_idx;
-		// ft_printf("push_to_b_price: %d\n", stack_b->push_to_b_price);
 		stack_b = stack_b->next;
 	}
 }
@@ -110,11 +96,9 @@ void	set_cheapest_push(t_stack *stack_b)
 			best_matching_idx = stack_b->push_to_b_price;
 			best_matching_node = stack_b;
 		}
-		// ft_printf("best_matching_node: %d\n", best_matching_node->value);
 		stack_b = stack_b->next;
 	}
 	best_matching_node->cheapest_node = 1;
-	// ft_printf("is cheapest_node: %d\n", best_matching_node->cheapest_node);
 }
 
 t_stack	*take_cheapest_node(t_stack *stack)
@@ -123,7 +107,6 @@ t_stack	*take_cheapest_node(t_stack *stack)
 		return (NULL);
 	while (stack)
 	{
-		// ft_printf("finding cheapest node\n");
 		if (stack->cheapest_node == 1)
 			return (stack);
 		stack = stack->next;
@@ -138,7 +121,6 @@ void	post_rotation(t_stack **stack, t_stack *cheapest_node, char stack_name)
 
 	rotate_op = NULL;
 	rev_rotate_op = NULL;
-	// ft_printf("post_rotation\n");
 	if (stack_name == 'a')
 	{
 		rotate_op = "ra";
@@ -161,24 +143,17 @@ void	post_rotation(t_stack **stack, t_stack *cheapest_node, char stack_name)
 void	move(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*cheapest_node;
+	t_stack	*cheapest_node_a;
 
 	cheapest_node = take_cheapest_node(*stack_b);
-	// ft_printf("taking cheaper node\n");
-	// ft_printf("cheapest_node: %d\n", cheapest_node->value);
+	cheapest_node_a = cheapest_node->best_node;
 	if (cheapest_node->is_half_up && cheapest_node->best_node->is_half_up)
-	{
-		// ft_printf("rotate\n");
 		stack_rotate_togheter(stack_a, stack_b, cheapest_node);
-	}
 	else if (!cheapest_node->is_half_up
 		&& !cheapest_node->best_node->is_half_up)
-	{
-		// ft_printf("reverse rotate\n");
 		stack_rev_rotate_togheter(stack_a, stack_b, cheapest_node);
-	}
-	// ft_printf("post_rotation\n");
+	post_rotation(stack_a, cheapest_node_a, 'a');
 	post_rotation(stack_b, cheapest_node, 'b');
-	post_rotation(stack_a, cheapest_node->best_node, 'a');
 	node_push(stack_b, stack_a, "pa");
 }
 
@@ -188,7 +163,6 @@ void	prepare_stack(t_stack *stack_a, t_stack *stack_b)
 	assign_index(stack_b);
 	find_best_biggest_smallest(stack_a, stack_b);
 	calc_push_price(stack_a, stack_b);
-	// ft_printf("set_cheapest_push\n");
 	set_cheapest_push(stack_b);
 }
 
@@ -196,23 +170,22 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	stack_a_size;
 	int	index;
+	int	middle;
 
-	// int	middle;
-	// map_values(stack_a);
+	map_values(stack_a);
 	stack_a_size = ft_stack_size(*stack_a);
 	while (stack_a_size-- > 3)
 		node_push(stack_a, stack_b, "pb");
-	sort_three(stack_a);
+	if (!check_if_sorted(*stack_a))
+		sort_three(stack_a);
 	while (*stack_b)
 	{
 		prepare_stack(*stack_a, *stack_b);
 		move(stack_a, stack_b);
 	}
 	index = check_index(*stack_a, stack_min_value(*stack_a));
-	// ft_printf("stack size: %d\n", ft_stack_size(*stack_a));
-	// middle = ft_stack_size(*stack_a) / 2;
-	// ft_printf("middle: %d\n", middle);
-	if (index < ft_stack_size(*stack_a) / 2)
+	middle = ft_stack_size(*stack_a) / 2;
+	if (index < middle)
 	{
 		while (index > 0)
 		{
@@ -228,6 +201,4 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 			index++;
 		}
 	}
-	// if (!check_if_sorted(*stack_a))
-	// 	post_optimization(stack_a, stack_b);
 }
