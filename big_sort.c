@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/17 00:06:48 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/23 00:36:02 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:54:42 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	assign_index(t_stack *stack)
 		return ;
 	// ft_printf("stack_size: %d\n", ft_stack_size(stack));
 	center = ft_stack_size(stack) / 2;
-	ft_printf("center: %d\n", center);
+	// ft_printf("center: %d\n", center);
 	// ft_printf("assign_index\n");
 	while (stack)
 	{
@@ -198,7 +198,7 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 	int	index;
 
 	// int	middle;
-	map_values(stack_a);
+	// map_values(stack_a);
 	stack_a_size = ft_stack_size(*stack_a);
 	while (stack_a_size-- > 3)
 		node_push(stack_a, stack_b, "pb");
@@ -228,6 +228,6 @@ void	big_sort(t_stack **stack_a, t_stack **stack_b)
 			index++;
 		}
 	}
-	if (!check_if_sorted(*stack_a))
-		post_optimization(stack_a, stack_b);
+	// if (!check_if_sorted(*stack_a))
+	// 	post_optimization(stack_a, stack_b);
 }
