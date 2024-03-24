@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/23 22:01:48 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/24 18:12:46 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static long	ft_atol(const char *str)
 	if (num == INT_MIN)
 		return (INT_MIN);
 	else if (num > INT_MAX || num < INT_MIN)
-		ft_error();
+		return (0);
 	return (num);
 }
 
@@ -51,14 +51,16 @@ t_stack	*checker_string(char **av)
 	stack_a = NULL;
 	i = 0;
 	tmp = ft_split(av[1], 32);
-	if (!tmp)
+	if (!tmp || tmp[0] == NULL)
 		mega_free(NULL, tmp);
 	while (tmp[i])
 	{
-		if (ft_sign_error(tmp[i]) || ft_syntax_error(tmp[i])
-			|| ft_duplicate_error(stack_a, ft_atoi(tmp[i])))
-			mega_free(stack_a, tmp);
 		j = ft_atol(tmp[i]);
+		if (j == 0 && (tmp[i][0] == '\0' || (tmp[i][0] != '0')))
+			return (mega_free(stack_a, tmp), NULL);
+		if (ft_sign_error(tmp[i]) || ft_syntax_error(tmp[i])
+			|| ft_duplicate_error(stack_a, j))
+			mega_free(stack_a, tmp);
 		ft_add_new_node(&stack_a, j);
 		i++;
 	}
@@ -98,24 +100,23 @@ t_stack	*checker_input(int ac, char **av)
 	int		i;
 	int		j;
 
-	i = 1;
+	i = 0;
 	stack_a = NULL;
-	if ((ac == 2 && (!av[1][0] || !av[1][1] || (av[1][0] == ' '
-					&& av[1][1] == ' '))) || ac == 1)
+	if (ac == 1)
 		ft_error();
-	else if (ac == 2)
+	if (ac == 2)
 		stack_a = checker_string(av);
 	else if (ac > 2)
 	{
-		while (i < ac)
+		while (++i < ac)
 		{
-			if (ft_is_valid(ac, av) || ft_sign_error(av[i])
-				|| ft_syntax_error(av[i]) || ft_duplicate_error(stack_a,
-					ft_atoi(av[i])))
-				mega_free(stack_a, NULL);
 			j = ft_atol(av[i]);
+			if (j == 0 && (av[i][0] == '\0' || (av[i][0] != '0')))
+				return (mega_free(stack_a, NULL), NULL);
+			if (ft_is_valid(ac, av) || ft_sign_error(av[i])
+				|| ft_syntax_error(av[i]) || ft_duplicate_error(stack_a, j))
+				mega_free(stack_a, NULL);
 			ft_add_new_node(&stack_a, j);
-			i++;
 		}
 	}
 	return (stack_a);

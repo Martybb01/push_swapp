@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:02:32 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/24 14:34:40 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/24 17:45:15 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ void	check_operations(t_stack **stack_a, t_stack **stack_b, char *str)
 	else if (!ft_strcmp(str, "rrr"))
 		nodes_double_reverse_rotate(stack_a, stack_b);
 	else
+	{
+		free(str);
 		ft_error();
+	}
 }
 
 int	main(int ac, char **av)
@@ -84,26 +87,24 @@ int	main(int ac, char **av)
 	size = ft_stack_size(temp_a);
 	stack_b = NULL;
 	temp_b = stack_b;
-	if (check_if_sorted(temp_a))
+	line = "";
+	while (!line)
 	{
-		ft_free_stack(temp_a);
+		line = get_next_line(STDIN_FILENO);
+		check_operations(&temp_a, &temp_b, line);
+		free(line);
+	}
+	if (check_if_sorted(stack_a))
+	{
+		ft_free_stack(stack_a);
 		return (0);
 	}
 	else
-		routing(&temp_a, &temp_b);
-	line = get_next_line(STDIN_FILENO);
-	ft_printf("checker\n");
-	ft_printf("line: %s\n", line);
-	while (line)
-	{
-		check_operations(&temp_a, &temp_b, line);
-		line = get_next_line(STDIN_FILENO);
-		free(line);
-	}
-	if (check_if_sorted(temp_a) && size == ft_stack_size(stack_a))
+		routing(&stack_a, &stack_b);
+	if (check_if_sorted(temp_a) && size == ft_stack_size(stack_a) && !stack_b)
 		ft_putstr_fd("OK\n", 1);
 	else
 		ft_putstr_fd("KO\n", 1);
-	ft_free_stack(temp_a);
+	ft_free_stack(stack_a);
 	return (0);
 }

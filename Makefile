@@ -29,18 +29,9 @@ SRCS_CHECKER := checker.c
 OBJS_MAIN := $(SRCS_COMMON:.c=.o) $(SRCS_MAIN:.c=.o)
 OBJS_CHECKER :=  $(SRCS_COMMON:.c=.o) $(SRCS_CHECKER:.c=.o)
 
-# OBJS_MAIN := $(addprefix $(OBJ_DIR)/, $(OBJS_MAIN))
-# OBJS_CHECKER := $(addprefix $(OBJ_DIR)/, $(OBJS_CHECKER))
-
 all: $(NAME)
-# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-# 	@mkdir -p $(@D)
-# 	$(CC) $(CFLAGS) -c $< -o $@
 
 bonus: $(NAME_BONUS)
-# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-# 	@mkdir -p $(@D)
-# 	$(CC) $(CFLAGS) -c $< -o $@
 
 /%.o: /%.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -58,12 +49,6 @@ $(NAME_BONUS): $(OBJS_CHECKER)
 	$(CC) $(OBJS_CHECKER) -o $(NAME_BONUS) $(LIBFT)
 	echo "${BOLD}Creating  -> ${RED}$(NAME_BONUS)${NO_COLOR}"
 	${MAKE} spiderman
-
-# $(NAME_BONUS): $(OBJS_CHECKER)
-# 	@[ -f $(LIBFT) ] || make -C libft_super/
-# 	$(info ${BOLD}Creating  -> ${BLUE}libft.a${NO_COLOR})
-# 	$(CC) $(OBJS_CHECKER) -o $(NAME_BONUS) $(LIBFT)
-# 	echo "${BOLD}Creating  -> ${RED}$(NAME_BONUS)${NO_COLOR}"
 
 
 clean:
