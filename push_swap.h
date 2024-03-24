@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 15:03:57 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/23 23:29:56 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/24 13:23:45 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_stack
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }					t_stack;
+
+int					main(int ac, char **av);
 
 // ------------ UTILS ------------
 

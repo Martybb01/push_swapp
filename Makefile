@@ -1,15 +1,14 @@
 NAME        = push_swap
+NAME_BONUS  = checker
+
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -g
 RM          = rm -f
 
 LIBFT = libft_super/libft.a
-SRC_DIR     = src
-OBJ_DIR     = .dir
 
-SRCS := main.c \
+SRCS_COMMON := check_errors.c \
 free.c \
-check_errors.c \
 stack_init.c \
 stack_utils.c \
 sort_utils.c \
@@ -23,33 +22,62 @@ quick_sort.c \
 sort_three.c \
 big_sort.c \
 
-OBJS := $(SRCS:.c=.o)
+SRCS_MAIN := main.c 
+SRCS_CHECKER := checker.c 
 
+
+OBJS_MAIN := $(SRCS_COMMON:.c=.o) $(SRCS_MAIN:.c=.o)
+OBJS_CHECKER :=  $(SRCS_COMMON:.c=.o) $(SRCS_CHECKER:.c=.o)
+
+# OBJS_MAIN := $(addprefix $(OBJ_DIR)/, $(OBJS_MAIN))
+# OBJS_CHECKER := $(addprefix $(OBJ_DIR)/, $(OBJS_CHECKER))
 
 all: $(NAME)
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(@D)
+# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+# 	@mkdir -p $(@D)
+# 	$(CC) $(CFLAGS) -c $< -o $@
+
+bonus: $(NAME_BONUS)
+# $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+# 	@mkdir -p $(@D)
+# 	$(CC) $(CFLAGS) -c $< -o $@
+
+/%.o: /%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS_MAIN)
 	@[ -f $(LIBFT) ] || make -C libft_super/
 	$(info ${BOLD}Creating  -> ${BLUE}libft.a${NO_COLOR})
-	$(CC) $(OBJS) -o $(NAME) $(LIBFT)
+	$(CC) $(OBJS_MAIN) -o $(NAME) $(LIBFT)
 	echo "${BOLD}Creating  -> ${RED}$(NAME)${NO_COLOR}"
 	${MAKE} spiderman
 
+$(NAME_BONUS): $(OBJS_CHECKER)
+	@[ -f $(LIBFT) ] || make -C libft_super/
+	$(info ${BOLD}Creating  -> ${BLUE}libft.a${NO_COLOR})
+	$(CC) $(OBJS_CHECKER) -o $(NAME_BONUS) $(LIBFT)
+	echo "${BOLD}Creating  -> ${RED}$(NAME_BONUS)${NO_COLOR}"
+	${MAKE} spiderman
+
+# $(NAME_BONUS): $(OBJS_CHECKER)
+# 	@[ -f $(LIBFT) ] || make -C libft_super/
+# 	$(info ${BOLD}Creating  -> ${BLUE}libft.a${NO_COLOR})
+# 	$(CC) $(OBJS_CHECKER) -o $(NAME_BONUS) $(LIBFT)
+# 	echo "${BOLD}Creating  -> ${RED}$(NAME_BONUS)${NO_COLOR}"
+
 
 clean:
-	$(RM) -r $(OBJ_DIR)
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_CHECKER)
+	echo "\n✅ ${RED}SUCCESS:${NO_COLOR} ${BOLD}Objs files have been deleted"
 
 fclean: clean
 	make clean -C libft_super/
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME_BONUS)
+	echo "\n✅ ${RED}SUCCESS:${NO_COLOR} ${BOLD}Objs files $(NAME) and $(NAME_BONUS) have been deleted\n"
 
 re: fclean all
 
-.PHONY: clean fclean re all
+.PHONY: clean fclean re all bonus
 .SILENT:
 
 RED         := ${shell tput setaf 1}
