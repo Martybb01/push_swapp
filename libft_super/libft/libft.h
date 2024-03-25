@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 22:10:22 by marboccu          #+#    #+#             */
-/*   Updated: 2024/02/19 23:21:20 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:46:19 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void				ft_swap(int *a, int *b);
 int					ft_strlen(const char *s);
 unsigned int		ft_strlcpy(char *dest, const char *src, size_t size);
 unsigned int		ft_strlcat(char *dest, char *src, unsigned int size);
+int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(char *s1, const char *s2, size_t n);
 char				*ft_strnstr(const char *bigstr, const char *smallstr,
 						size_t len);
