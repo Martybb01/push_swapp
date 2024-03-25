@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:02:32 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/25 00:32:47 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:50:40 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,6 @@ void	routing(t_stack **stack_a, t_stack **stack_b)
 		sort_small(stack_a, stack_b, len);
 	else
 		big_sort(stack_a, stack_b);
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	while (*s1 && *s2 && *s1 == *s2)
-	{
-		s1++;
-		s2++;
-	}
-	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
 
 char	*check_operations(t_stack **stack_a, t_stack **stack_b, char *str)
@@ -67,10 +57,7 @@ char	*check_operations(t_stack **stack_a, t_stack **stack_b, char *str)
 	else if (!ft_strcmp(str, "rrr\n"))
 		nodes_double_reverse_rotate(stack_a, stack_b);
 	else
-	{
-		free(str);
-		ft_error();
-	}
+		ft_error_free_str(str);
 	return (get_next_line(STDIN_FILENO));
 }
 

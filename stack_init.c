@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:25:12 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/23 23:27:52 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:51:15 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	ft_add_new_node(t_stack **stack, int num)
 	}
 	init_values(new_node);
 	new_node->value = num;
-	// new_node->next = NULL;
 	if (!*stack)
 		*stack = new_node;
 	else
