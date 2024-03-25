@@ -6,74 +6,111 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:02:32 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/25 14:50:40 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:59:13 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	routing(t_stack **stack_a, t_stack **stack_b)
+void	nodes_rev_rotate_bonus(t_stack **stack_a, t_stack **stack_b)
 {
-	int	len;
-
-	len = ft_stack_size(*stack_a);
-	if (len == 1)
-		return ;
-	else if (len == 2)
-	{
-		if ((*stack_a)->value > (*stack_a)->next->value)
-			nodes_swap(*stack_a, "sa");
-	}
-	else if (len == 3)
-		sort_three(stack_a);
-	else if (len > 3 && len <= 5)
-		sort_small(stack_a, stack_b, len);
-	else
-		big_sort(stack_a, stack_b);
+	nodes_reverse_rotate(stack_a, NULL);
+	nodes_reverse_rotate(stack_b, NULL);
 }
 
-char	*check_operations(t_stack **stack_a, t_stack **stack_b, char *str)
+void	nodes_rotate_bonus(t_stack **stack_a, t_stack **stack_b)
 {
-	if (!ft_strcmp(str, "sa\n"))
-		nodes_swap(*stack_a, "sa");
-	else if (!ft_strcmp(str, "sb\n"))
-		nodes_swap(*stack_b, "sb");
-	else if (!ft_strcmp(str, "ss\n"))
-		nodes_double_swap(*stack_a, *stack_b);
-	else if (!ft_strcmp(str, "pa\n"))
-		node_push(stack_b, stack_a, "pa");
-	else if (!ft_strcmp(str, "pb\n"))
-		node_push(stack_a, stack_b, "pb");
-	else if (!ft_strcmp(str, "ra\n"))
-		nodes_rotate(stack_a, "ra");
-	else if (!ft_strcmp(str, "rb\n"))
-		nodes_rotate(stack_b, "rb");
-	else if (!ft_strcmp(str, "rr\n"))
-		nodes_double_rotate(stack_a, stack_b);
-	else if (!ft_strcmp(str, "rra\n"))
-		nodes_reverse_rotate(stack_a, "rra");
-	else if (!ft_strcmp(str, "rrb\n"))
-		nodes_reverse_rotate(stack_b, "rrb");
-	else if (!ft_strcmp(str, "rrr\n"))
-		nodes_double_reverse_rotate(stack_a, stack_b);
-	else
+	nodes_rotate(stack_a, NULL);
+	nodes_rotate(stack_b, NULL);
+}
+
+void	check_operations(t_stack *stack_a, t_stack *stack_b, char *str)
+{
+	if (!str)
 		ft_error_free_str(str);
-	return (get_next_line(STDIN_FILENO));
+	else
+	{
+		if (!ft_strcmp(str, "sa\n"))
+			nodes_swap(stack_a, NULL);
+		else if (!ft_strcmp(str, "sb\n"))
+			nodes_swap(stack_b, NULL);
+		else if (!ft_strcmp(str, "ss\n"))
+			nodes_double_swap(stack_a, stack_b);
+		else if (!ft_strcmp(str, "pa\n"))
+			node_push(stack_b, stack_a, NULL);
+		else if (!ft_strcmp(str, "pb\n"))
+			node_push(stack_a, stack_b, NULL);
+		else if (!ft_strcmp(str, "ra\n"))
+			nodes_rotate(stack_a, NULL);
+		else if (!ft_strcmp(str, "rb\n"))
+			nodes_rotate(stack_b, NULL);
+		else if (!ft_strcmp(str, "rr\n"))
+			nodes_rotate_bonus(stack_a, stack_b);
+		else if (!ft_strcmp(str, "rra\n"))
+			nodes_reverse_rotate(stack_a, NULL);
+		else if (!ft_strcmp(str, "rrb\n"))
+			nodes_reverse_rotate(stack_b, NULL);
+		else if (!ft_strcmp(str, "rrr\n"))
+			nodes_rev_rotate_bonus(stack_a, stack_b);
+		else
+		{
+			free(str);
+			get_next_line(-42);
+			ft_error();
+		}
+	}
 }
 
-void	validity_checker(t_stack **stack_a, t_stack **stack_b, char *line)
-{
-	char	*tmp;
-	int		i;
+// void	validity_checker(t_stack **stack_a, t_stack **stack_b, char *line)
+// {
+// 	char	*tmp;
+// 	int		i;
 
-	i = 0;
-	while (line && line[i] != '\n')
+// 	i = 0;
+// 	while (line && line[i] != '\n')
+// 	{
+// 		tmp = line;
+// 		line = check_operations(stack_a, stack_b, line);
+// 		free(tmp);
+// 	}
+// 	free(line);
+// }
+
+int	check_stacks(t_stack *stack_a, t_stack *stack_b)
+{
+	int	x;
+
+	x = 0;
+	if (ft_stack_size(stack_b) != 0)
+		x = 1;
+	else if (ft_stack_size(stack_a) != 1)
+		x = -1;
+	return (x);
+}
+
+void	ft_checker(t_stack *stack_a, t_stack *stack_b)
+{
+	char	*line;
+	int		x;
+	int		flag;
+
+	line = NULL;
+	flag = 1;
+	while (flag == 1 || line != NULL)
 	{
-		tmp = line;
-		line = check_operations(stack_a, stack_b, line);
-		free(tmp);
+		flag = 0;
+		line = get_next_line(STDIN_FILENO);
+		check_operations(stack_a, stack_b, line);
+		if (line)
+			free(line);
 	}
-	free(line);
+	x = check_stacks(stack_a, stack_b);
+	if (x == -1)
+		ft_putstr_fd("KO\n", 1);
+	else if (x == 0)
+		ft_putstr_fd("OK\n", 1);
+	else
+		ft_error();
 }
 
 int	main(int ac, char **av)
@@ -89,16 +126,19 @@ int	main(int ac, char **av)
 		ft_free_stack(stack_a);
 		ft_error();
 	}
-	line = " ";
-	while (line)
-	{
-		line = get_next_line(STDIN_FILENO);
-		validity_checker(&stack_a, &stack_b, line);
-	}
-	if (check_if_sorted(stack_a) && !stack_b)
-		ft_putstr_fd("OK\n", 1);
-	else
-		ft_putstr_fd("KO\n", 1);
+	ft_checker(stack_a, stack_b);
+	// line = "";
+	// while (line)
+	// {
+	// 	line = get_next_line(STDIN_FILENO);
+	// 	validity_checker(&stack_a, &stack_b, line);
+	// 	// check_operations(&stack_a, &stack_b, line);
+	// 	// free(line);
+	// }
+	// if (check_if_sorted(stack_a) && !stack_b)
+	// 	ft_putstr_fd("OK\n", 1);
+	// else
+	// 	ft_putstr_fd("KO\n", 1);
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
 	return (0);
