@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/24 18:12:46 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:29:54 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ t_stack	*checker_string(char **av)
 	i = 0;
 	tmp = ft_split(av[1], 32);
 	if (!tmp || tmp[0] == NULL)
-		mega_free(NULL, tmp);
+		ft_free_matrix(tmp);
 	while (tmp[i])
 	{
 		j = ft_atol(tmp[i]);
 		if (j == 0 && (tmp[i][0] == '\0' || (tmp[i][0] != '0')))
-			return (mega_free(stack_a, tmp), NULL);
+			return (mega_free(stack_a, NULL, NULL, tmp), NULL);
 		if (ft_sign_error(tmp[i]) || ft_syntax_error(tmp[i])
 			|| ft_duplicate_error(stack_a, j))
-			mega_free(stack_a, tmp);
+			mega_free(stack_a, NULL, NULL, tmp);
 		ft_add_new_node(&stack_a, j);
 		i++;
 	}
@@ -112,10 +112,10 @@ t_stack	*checker_input(int ac, char **av)
 		{
 			j = ft_atol(av[i]);
 			if (j == 0 && (av[i][0] == '\0' || (av[i][0] != '0')))
-				return (mega_free(stack_a, NULL), NULL);
+				return (mega_free(stack_a, NULL, NULL, NULL), NULL);
 			if (ft_is_valid(ac, av) || ft_sign_error(av[i])
 				|| ft_syntax_error(av[i]) || ft_duplicate_error(stack_a, j))
-				mega_free(stack_a, NULL);
+				mega_free(stack_a, NULL, NULL, NULL);
 			ft_add_new_node(&stack_a, j);
 		}
 	}

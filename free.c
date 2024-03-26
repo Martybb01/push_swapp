@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:36:41 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/25 18:48:26 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/26 12:10:58 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,21 @@ void	ft_free_matrix(char **matrix)
 	free(matrix);
 }
 
-void	mega_free(t_stack *stack_a, char **str)
+void	mega_free(t_stack *stack_a, t_stack *stack_b, char *str, char **matrix)
 {
-	if (stack_a)
-		ft_free_stack(stack_a);
-	if (str)
-		ft_free_matrix(str);
+	ft_free_all(stack_a, stack_b, str, matrix);
 	ft_error();
 }
 
-void	ft_error_free_str(char *str)
+void	ft_free_all(t_stack *stack_a, t_stack *stack_b, char *str,
+		char **matrix)
 {
+	if (stack_a)
+		ft_free_stack(stack_a);
+	if (stack_b)
+		ft_free_stack(stack_b);
 	if (str)
 		free(str);
-	ft_error();
+	if (matrix)
+		ft_free_matrix(matrix);
 }
