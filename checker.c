@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:02:32 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/26 12:28:17 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/26 15:22:22 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,94 +50,11 @@ int	check_operations(t_stack **stack_a, t_stack **stack_b, char *str)
 		nodes_rev_rotate_bonus(stack_a, stack_b);
 	else
 	{
+		free(str);
 		return (0);
 	}
 	return (1);
 }
-
-// void	validity_checker(t_stack **stack_a, t_stack **stack_b, char *line)
-// {
-// 	char	*tmp;
-// 	int		i;
-
-// 	i = 0;
-// 	while (line && line[i] != '\n')
-// 	{
-// 		tmp = line;
-// 		line = check_operations(stack_a, stack_b, line);
-// 		free(tmp);
-// 	}
-// 	free(line);
-// }
-
-// int	check_stacks(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	int	x;
-
-// 	x = 0;
-// 	if (ft_stack_size(*stack_b) != 0)
-// 		x = 1;
-// 	else if (ft_stack_size(*stack_a) != 1)
-// 		x = -1;
-// 	return (x);
-// }
-
-// void	ft_checker(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	char	*line;
-// 	int		x;
-// 	int		flag;
-
-// 	flag = 1;
-// 	line = NULL;
-// 	while (line != 0 || flag == 1)
-// 	{
-// 		flag = 0;
-// 		line = get_next_line(STDIN_FILENO);
-// 		check_operations(stack_a, stack_b, line);
-// 		ft_printf("lol\n");
-// 		if (line)
-// 			free(line);
-// 	}
-// 	x = check_stacks(stack_a, stack_b);
-// 	if (x == -1)
-// 		ft_putstr_fd("KO\n", 1);
-// 	else if (x == 0)
-// 		ft_putstr_fd("OK\n", 1);
-// 	else
-// 		ft_error();
-// }
-
-// int	main(int ac, char **av)
-// {
-// 	t_stack	*stack_a;
-// 	t_stack	*stack_b;
-
-// 	// char	*line;
-// 	stack_a = checker_input(ac, av);
-// 	stack_b = NULL;
-// 	if (!stack_a)
-// 	{
-// 		ft_free_stack(stack_a);
-// 		ft_error();
-// 	}
-// 	ft_checker(&stack_a, &stack_b);
-// 	// line = "";
-// 	// while (line)
-// 	// {
-// 	// 	line = get_next_line(STDIN_FILENO);
-// 	// 	validity_checker(&stack_a, &stack_b, line);
-// 	// 	// check_operations(&stack_a, &stack_b, line);
-// 	// 	// free(line);
-// 	// }
-// 	// if (check_if_sorted(stack_a) && !stack_b)
-// 	// 	ft_putstr_fd("OK\n", 1);
-// 	// else
-// 	// 	ft_putstr_fd("KO\n", 1);
-// 	ft_free_stack(stack_a);
-// 	ft_free_stack(stack_b);
-// 	return (0);
-// }
 
 void	print_result(t_stack **stack_a, t_stack **stack_b)
 {
@@ -145,16 +62,6 @@ void	print_result(t_stack **stack_a, t_stack **stack_b)
 		ft_putstr_fd("OK\n", 1);
 	else
 		ft_putstr_fd("KO\n", 1);
-}
-
-int	empty_stacks(char *str, t_stack **stack_a, t_stack **stack_b)
-{
-	if ((!ft_strncmp(str, "pb\n", 3) && ft_stack_size(*stack_a) == 0)
-		|| (!ft_strncmp(str, "pa\n", 3) && ft_stack_size(*stack_b) == 0))
-	{
-		return (1);
-	}
-	return (0);
 }
 
 int	handle_input(int ac, char **av, t_stack **stack_a, t_stack **stack_b)
@@ -191,13 +98,15 @@ int	main(int ac, char **av)
 	if (!handle_input(ac, av, &stack_a, &stack_b))
 		return (0);
 	output = get_next_line(STDIN_FILENO);
-	while (output)
+	while (output != NULL)
 	{
-		if (empty_stacks(output, &stack_a, &stack_b))
+		if (output[0] == '\n' || !output)
+		{
+			free(output);
 			break ;
+		}
 		if (!check_operations(&stack_a, &stack_b, output))
 		{
-			// ft_printf("YOLO\n");
 			ft_free_all(stack_a, stack_b, output, NULL);
 			ft_putstr_fd("Error\n", 2);
 			return (0);
@@ -205,8 +114,7 @@ int	main(int ac, char **av)
 		free(output);
 		output = get_next_line(STDIN_FILENO);
 	}
-	// ft_printf("YOLO\n");
 	print_result(&stack_a, &stack_b);
-	ft_free_all(stack_a, stack_b, output, NULL);
+	ft_free_all(stack_a, stack_b, NULL, NULL);
 	return (0);
 }
