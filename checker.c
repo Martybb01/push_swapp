@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 13:02:32 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/26 15:22:22 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:26:44 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,8 @@ int	handle_input(int ac, char **av, t_stack **stack_a, t_stack **stack_b)
 	*stack_b = NULL;
 	if (!*stack_a)
 	{
-		ft_free_stack(*stack_a);
-		ft_free_stack(*stack_b);
+		ft_free_all(*stack_a, *stack_b, NULL, NULL);
 		ft_putstr_fd("Error\n", 2);
-		return (0);
-	}
-	if (check_if_sorted(*stack_a))
-	{
-		print_result(stack_a, stack_b);
-		ft_free_stack(*stack_a);
-		ft_free_stack(*stack_b);
 		return (0);
 	}
 	return (1);
@@ -101,13 +93,10 @@ int	main(int ac, char **av)
 	while (output != NULL)
 	{
 		if (output[0] == '\n' || !output)
-		{
-			free(output);
 			break ;
-		}
 		if (!check_operations(&stack_a, &stack_b, output))
 		{
-			ft_free_all(stack_a, stack_b, output, NULL);
+			ft_free_all(stack_a, stack_b, NULL, NULL);
 			ft_putstr_fd("Error\n", 2);
 			return (0);
 		}
@@ -115,6 +104,6 @@ int	main(int ac, char **av)
 		output = get_next_line(STDIN_FILENO);
 	}
 	print_result(&stack_a, &stack_b);
-	ft_free_all(stack_a, stack_b, NULL, NULL);
+	ft_free_all(stack_a, stack_b, output, NULL);
 	return (0);
 }

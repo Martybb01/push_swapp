@@ -37,14 +37,14 @@ bonus: $(NAME_BONUS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS_MAIN)
-	@[ -f $(LIBFT) ] || make -C libft_super/
+	make -C libft_super/
 	$(info ${BOLD}Creating  -> ${BLUE}libft.a${NO_COLOR})
 	$(CC) $(OBJS_MAIN) -o $(NAME) $(LIBFT)
 	echo "${BOLD}Creating  -> ${RED}$(NAME)${NO_COLOR}"
 	${MAKE} spiderman
 
 $(NAME_BONUS): $(OBJS_CHECKER)
-	@[ -f $(LIBFT) ] || make -C libft_super/
+	make -C libft_super/
 	$(info ${BOLD}Creating  -> ${BLUE}libft.a${NO_COLOR})
 	$(CC) $(OBJS_CHECKER) -o $(NAME_BONUS) $(LIBFT)
 	echo "${BOLD}Creating  -> ${RED}$(NAME_BONUS)${NO_COLOR}"

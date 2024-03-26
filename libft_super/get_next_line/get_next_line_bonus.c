@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 20:10:17 by marboccu          #+#    #+#             */
-/*   Updated: 2023/10/25 12:08:53 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/26 19:17:28 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,15 @@ static char	*extract_new_line(char *line_buffer)
 	return (new_line);
 }
 
+void	free_if_extra(char **save_buff)
+{
+	if (ft_strlen(*save_buff) == 0)
+	{
+		free(*save_buff);
+		*save_buff = NULL;
+	}
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*save_buff[4096];
@@ -109,11 +118,12 @@ char	*get_next_line(int fd)
 	if (*save_buff[fd] == 0)
 	{
 		free(save_buff[fd]);
-		save_buff[fd] = 0;
+		save_buff[fd] = NULL;
 		return (save_buff[fd]);
 	}
 	line_read = line_creator(save_buff[fd], line_read);
 	save_buff[fd] = extract_new_line(save_buff[fd]);
+	free_if_extra(&save_buff[fd]);
 	return (line_read);
 }
 
