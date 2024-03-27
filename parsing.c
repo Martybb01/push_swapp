@@ -6,7 +6,7 @@
 /*   By: marboccu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 20:45:33 by marboccu          #+#    #+#             */
-/*   Updated: 2024/03/27 11:52:23 by marboccu         ###   ########.fr       */
+/*   Updated: 2024/03/27 12:12:49 by marboccu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static long	ft_atol(const char *str)
 		return (0);
 	return (num);
 }
+
 int	ft_check_spaces(char *str)
 {
 	int	len;
