@@ -52,7 +52,7 @@ $(NAME_BONUS): $(OBJS_CHECKER)
 
 
 clean:
-	$(RM) $(OBJS) $(OBJS_CHECKER)
+	$(RM) $(OBJS_MAIN) $(OBJS_CHECKER)
 	echo "\n✅ ${RED}SUCCESS:${NO_COLOR} ${BOLD}Objs files have been deleted"
 
 fclean: clean
